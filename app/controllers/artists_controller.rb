@@ -11,9 +11,18 @@ class ArtistsController < ApplicationController
 
     def new
         @artist = Artist.new
+        @artist.genres.build()
     end
 
     def create
+        #byebug
+        @artist = Artist.new(artist_params)
+        if @artist.save
+            @artist.save
+            redirect_to artist_path(@artist)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -29,6 +38,6 @@ class ArtistsController < ApplicationController
     end
 
     def artist_params
-        params.require(:artist).permit(:name, :description, :image_url, genres: [])
+        params.require(:artist).permit(:name, :description, :image_url, genre_ids: [], genres_attributes: [:name])
     end
 end
