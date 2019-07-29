@@ -14,3 +14,25 @@
  *= require_self
  */
 
+img {max-width:400px}
+
+img.headshot {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+ul {
+    list-style: none
+
+}
+
+.thumb_display li {
+    display: inline-block;
+    max-width: 25%;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border: solid 1px #efefef;
+}
