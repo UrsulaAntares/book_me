@@ -1,0 +1,2 @@
+module ArtistLikesHelper
+end
