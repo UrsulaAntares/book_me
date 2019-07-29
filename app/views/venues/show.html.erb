@@ -1,0 +1,51 @@
+<h1> <%= @venue.name %> </h1>
+
+<h2> <%= @venue.location %></h2> 
+<p> Capacity: <%= @venue.capacity %></p>
+
+<p> <%= @venue.description.humanize %> </p>
+
+<% if @venue.future_shows %>
+    <h2> Upcoming Shows: </h2>
+    <ul> 
+        <% @venue.future_shows.each do |b| %>
+            <li>  
+                <%= "#{b.title}  | #{b.datetime_format(b.start_date)}-#{b.time_format(b.end_time)}" %>
+                <br>    
+                <%= link_to b.artist.name, artist_path(b.artist) %>
+                <br> 
+                <%= b.description  %> 
+                </li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+<% if @venue.past_shows.count > 0 %>
+    <h2>Past Shows: </h2>
+    <ul> 
+    <% @venue.past_shows.each do |b| %>
+        <li>  
+            <%= "#{b.title}  | #{b.datetime_format(b.start_date)}-#{b.time_format(b.end_time)}" %>
+            <br>    
+            <%= link_to b.artist.name, artist_path(b.artist) %>
+            <br> 
+            <%= b.description  %> 
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<% if @venue.artist_likes %>
+    <h2>Endorsed Artists: </h2>
+    <ul> 
+        <% @venue.artist_likes.each do |l| %>
+            <li>  
+                <a href="<%=artist_path(l.artist)%>"><img style="max-width:200px" src="<%=l.artist.image_url%>" />
+                <br>
+                <%=l.artist.name%></a>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
