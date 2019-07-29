@@ -3,7 +3,7 @@
 <%=form_for @artist do |f|%>
 <%=f.label :name%>
 <%=f.text_field :name%><br>
-
+<%=f.file_field :avatar%>
 <%=f.label :description%>
 <%=f.text_field :description%><br>
 <%=f.label "Genre tags"%>
