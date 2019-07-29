@@ -1,0 +1,13 @@
+<h1>New Artist Form</h1>
+
+<%=form_for @artist do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%><br>
+
+<%=f.label :description%>
+<%=f.text_field :description%><br>
+<%=f.label "Genre tags"%>
+<%=f.select :genre_ids, Genre.all.collect{|p| [p.name, p.id]}, {prompt: 'Please select'}, {multiple: true, size: 5}%>
+<%=f.submit "Create Artist"%>
+<%end%>
+

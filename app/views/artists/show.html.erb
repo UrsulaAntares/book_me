@@ -1,0 +1,35 @@
+<h1><%=@artist.name%></h1>
+
+<%=image_tag @artist.image_url, size: "30x30"%>
+
+<p><%=@artist.description%></p>
+
+
+<% if @artist.genres %>
+<p>Genres:</p>
+<%@artist.genres.each do |genre|%>
+<p><%=genre.name%></p>
+<%end%>
+<%end%>
+
+
+<div class = "artist-posts">
+<h4>Posts:</h4>
+<% if @artist.posts %>
+<% @artist.posts.each do |post|%>
+<p><%=post.content%></p>
+<%end%>
+<%end%>
+</div>
+
+
+<div class = "artist-bookings">
+<h4>Upcoming Events:</h4>
+<% if @artist.bookings %>
+<%@artist.bookings.each do |booking|%>
+<p><%=booking.title%></p>
+<p><%=booking.format_time%>
+<p><%=booking.description%></p>
+<%end%>
+<%end%>
+</div>
