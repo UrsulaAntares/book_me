@@ -3,9 +3,9 @@
 <h2> <%= @venue.location %></h2> 
 <p> Capacity: <%= @venue.capacity %></p>
 
-<p> <%= @venue.description.humanize %> </p>
+<p> <%= @venue.nice_description %> </p>
 
-<% if @venue.future_shows %>
+<% if @venue.future_shows.count > 0 %>
     <h2> Upcoming Shows: </h2>
     <ul class="thumb_display"> 
         <% @venue.future_shows.each do |b| %>
@@ -36,7 +36,7 @@
     </ul>
 <% end %>
 
-<% if @venue.artist_likes %>
+<% if @venue.artist_likes.count > 0 %>
     <h2>Endorsed Artists: </h2>
     <ul class="thumb_display"> 
         <% @venue.artist_likes.each do |l| %>
@@ -48,4 +48,5 @@
         <% end %>
     </ul>
 <% end %>
+
 

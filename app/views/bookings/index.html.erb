@@ -1,0 +1,19 @@
+
+<% start_date = params.fetch(:start_date, Date.today).to_date %>
+<% date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)%>
+
+
+
+
+<!--%= month_calendar  start_date_param: :date, events: @bookings do |date, bookings| %>-->
+<%= month_calendar(attribute: :date, events: @bookings) do |date, bookings| %>
+  <%= date.day %>
+
+  <% bookings.each do |booking| %>
+    <div>
+      <%= booking.title %>
+    </div>
+  <% end %>
+<% end %>
+
+

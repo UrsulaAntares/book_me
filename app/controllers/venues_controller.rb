@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
 
-    before_action :find_venue, only: :show
+    before_action :find_venue, only: [:show, :edit, :delete, :update]
 
     def show
         @bookings = @venue.bookings
@@ -11,20 +11,33 @@ class VenuesController < ApplicationController
     end
 
     def new
+        @venue = Venue.new
+    end
+
+    def create
+        @venue = Venue.new(venue_params)
+        if @venue.valid?
+            @venue.save
+            redirect_to venue_path(@venue)
+        else
+            render 'new'
+        end
+    end
+
+    def edit
+    end
+
+    def update
+        if @venue.valid?
+            @venue.update(venue_params)
+            redirect_to venue_path(@venue)
+        else
+            render 'edit'
+        end
     end
 
 
-    def datetime_format(datetime)
-        datetime.strftime("%A, %B %e, %Y, %I:%M %p")
-    end
 
-    def date_format(date)
-        date.strftime("%A, %B %e, %Y")
-    end
-
-    def time_format(time)
-        time.strftime("%I:%M %p")
-    end
 
     private
 
@@ -33,7 +46,7 @@ class VenuesController < ApplicationController
     end
     
     def venue_params
-
+        params.require(:venue).permit(:name, :location, :category, :capacity, :description)
     end
 
 end

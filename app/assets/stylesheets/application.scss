@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+//  *= require simple_calendar
+// @import simple_calendar
 
 img {max-width:400px}
 
@@ -36,3 +38,4 @@ ul {
     text-align: center;
     border: solid 1px #efefef;
 }
+

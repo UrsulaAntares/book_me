@@ -15,6 +15,10 @@ class Venue < ApplicationRecord
         self.bookings.select {|b| b.start_date < DateTime.now}
     end
 
-
+    def nice_description
+        if self.description
+            self.description.humanize
+        end
+    end
 
 end
