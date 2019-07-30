@@ -4,6 +4,10 @@
 <%=image_tag @artist.image_url, size: "30x30"%>
 <%end%>
 
+<%if @artist.avatar%>
+<%=image_tag @artist.avatar, class: "headshot"%>
+<%end%>
+
 <p><%=@artist.description%></p>
 
 
