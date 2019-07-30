@@ -11,7 +11,8 @@ class BookingsController < ApplicationController
     
     def new
         @booking = Booking.new
-        @booking.start_date = DateTime.now
+        @booking.start_date = DateTime.now.strftime("%Y-%m-%dT%H:%M:00")
+        @booking.end_time = DateTime.now.strftime("%Y-%m-%dT%H:%M:00")
     end
  
     def create
@@ -24,6 +25,18 @@ class BookingsController < ApplicationController
             render 'new'
         end
     end
+
+    def edit
+    end
+
+    def update
+        if @booking.update(booking_params)
+            redirect_to booking_path(@booking)
+        else
+            render 'edit'
+        end
+    end
+
 
     private
 
