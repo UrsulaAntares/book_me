@@ -1,6 +1,8 @@
 <h1><%=@artist.name%></h1>
 
+<% if @artist.image_url%>
 <%=image_tag @artist.image_url, size: "30x30"%>
+<%end%>
 
 <p><%=@artist.description%></p>
 

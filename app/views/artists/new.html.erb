@@ -7,7 +7,10 @@
 <%=f.label :description%>
 <%=f.text_field :description%><br>
 <%=f.label "Genre tags"%>
-<%=f.select :genre_ids, Genre.all.collect{|p| [p.name, p.id]}, {prompt: 'Please select'}%>
+<%=f.collection_check_boxes :genre_ids, Genre.all, :id, :name%><br>
+<%=f.fields_for :genres, @artist.genres.build do |g|%>
+<%=g.text_field :name%><br>
+<%end%>
 <%=f.submit "Create Artist"%>
 <%end%>
 
