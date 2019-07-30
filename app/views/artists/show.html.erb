@@ -35,12 +35,16 @@
 
 
 <div class = "artist-bookings">
-<h4>Upcoming Events:</h4>
-<% if @artist.bookings %>
-<%@artist.bookings.each do |booking|%>
-<p><%=booking.title%></p>
-<p><%=booking.format_time%>
-<p><%=booking.description%></p>
-<%end%>
-<%end%>
+    <h4>Upcoming Events:</h4>
+    <% if @artist.bookings %>
+        <%@artist.bookings.each do |booking|%>
+            <p><%=booking.title%></p>
+            <p><%=booking.format_time%>
+            <p><%=booking.description%></p>
+        <%end%>
+    <%end%>
 </div>
+
+
+<h2> Shows with this Artist: </h2>
+<%= render './bookings/calendar' %>
