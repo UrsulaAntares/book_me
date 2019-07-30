@@ -1,7 +1,7 @@
 <h1><%=@artist.name%></h1>
 
 <% if @artist.image_url%>
-<%=image_tag @artist.image_url, size: "30x30"%>
+    <%=image_tag @artist.image_url, class: "icon"%>
 <%end%>
 
 <%if @artist.avatar.attached?%>
@@ -13,20 +13,20 @@
 
 
 <% if @artist.genres %>
-<p>Genres:</p>
-<%@artist.genres.each do |genre|%>
-<p><%=genre.name%></p>
-<%end%>
+    <p>Genres:</p>
+    <%@artist.genres.each do |genre|%>
+        <p><%=genre.name%></p>
+    <%end%>
 <%end%>
 
 
 <div class = "artist-posts">
-<h4>Posts:</h4>
-<% if @artist.posts %>
-<% @artist.posts.each do |post|%>
-<p><%=post.content%></p>
-<%end%>
-<%end%>
+    <h4>Posts:</h4>
+    <% if @artist.posts %>
+        <% @artist.posts.each do |post|%>
+            <p><%=post.content%></p>
+        <%end%>
+    <%end%>
 </div>
 
 

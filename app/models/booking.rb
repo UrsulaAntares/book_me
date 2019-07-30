@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
+    extend SimpleCalendar
+    # has_calendar 
     belongs_to :artist
     belongs_to :venue
    
@@ -19,6 +21,10 @@ class Booking < ApplicationRecord
 
     def time_format(time)
         time.strftime("%I:%M %p")
+    end
+
+    def date
+        self.start_date.to_date
     end
     
 end
