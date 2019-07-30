@@ -1,0 +1,16 @@
+<%= month_calendar(attribute: :date, events: @bookings) do |date, bookings| %>
+  <%= date.day %>
+
+  <% bookings.each do |booking| %>
+    <div>
+      <%= booking.title %>
+      <br>
+      <a class="tile" href="<%=artist_path(booking.artist)%>">
+        <img class="icon" src="<%=booking.image_url||booking.artist.image_url||booking.venue.image_url%>" />
+        <%= booking.artist.name %>
+        </a>
+      <br>
+      
+    </div>
+  <% end %>
+<% end %>
