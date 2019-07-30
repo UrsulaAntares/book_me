@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_venues
+  resources :user_artists
   resources :users
   resources :artist_genres
   resources :artist_likes

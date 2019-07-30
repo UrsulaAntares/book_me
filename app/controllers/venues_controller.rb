@@ -18,6 +18,7 @@ class VenuesController < ApplicationController
         @venue = Venue.new(venue_params)
         if @venue.valid?
             @venue.save
+            UserVenue.create(user: current_user, venue: @venue)
             redirect_to venue_path(@venue)
         else
             render 'new'
@@ -25,6 +26,7 @@ class VenuesController < ApplicationController
     end
 
     def edit
+        require_login
     end
 
     def update
@@ -47,6 +49,10 @@ class VenuesController < ApplicationController
     
     def venue_params
         params.require(:venue).permit(:name, :location, :category, :capacity, :description)
+    end
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
     end
 
 end

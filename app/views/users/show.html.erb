@@ -1,3 +1,11 @@
 <h1>Welcome, <%=@user.username%></h1>
-
 <%=button_to "logout", logout_path%>
+<%=button_to "Create a New Artist Page", new_artist_path, method: 'get'%>
+<%=button_to "Create a New Venue Page", new_venue_path, method: 'get'%>
+
+<div>
+<p>My Artists</p>
+<%@user.artists.each do |artist|%>
+<p><%=link_to artist.name, artist_path(artist)%></p>
+<%end%>
+</div>

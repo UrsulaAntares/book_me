@@ -1,5 +1,9 @@
 <h1><%=@artist.name%></h1>
 
+<%if current_user%>
+<%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
+<%end%>
+
 <% if @artist.image_url%>
     <%=image_tag @artist.image_url, class: "icon"%>
 <%end%>

@@ -1,0 +1,2 @@
+class UserVenuesController < ApplicationController
+end

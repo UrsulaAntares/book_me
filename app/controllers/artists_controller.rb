@@ -19,6 +19,7 @@ class ArtistsController < ApplicationController
         @artist = Artist.new(artist_params)
         if @artist.save
             @artist.save
+            UserArtist.create(user: current_user, artist: @artist)
             redirect_to artist_path(@artist)
         else
             render :new
@@ -26,6 +27,7 @@ class ArtistsController < ApplicationController
     end
 
     def edit
+        require_login
     end
 
     def update
@@ -46,4 +48,9 @@ class ArtistsController < ApplicationController
     def artist_params
         params.require(:artist).permit(:name, :description, :image_url, :avatar, genre_ids: [], genres_attributes: [:name])
     end
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+    end
 end
+
