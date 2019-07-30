@@ -23,6 +23,10 @@ class Booking < ApplicationRecord
         time.strftime("%l:%M %p")
     end
 
+    def time
+        "#{time_format(self.start_date)} - #{time_format(self.end_time)}"
+    end
+
     def date
         self.start_date.to_date
     end

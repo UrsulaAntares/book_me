@@ -7,18 +7,9 @@
 
 <% if @venue.future_shows.count > 0 %>
     <h2> Upcoming Shows: </h2>
-    <ul class="thumb_display"> 
-        <% @venue.future_shows.each do |b| %>
-            <li>  
-                <%= "#{b.title}  | #{b.datetime_format(b.start_date)}-#{b.time_format(b.end_time)}" %>
-                <br>    
-                <%= link_to b.artist.name, artist_path(b.artist) %>
-                <br> 
-                <%= b.description  %> 
-                </li>
-        <% end %>
-    </ul>
+    <%= render './bookings/list_tiles' %>
 <% end %>
+
 
 
 <% if @venue.past_shows.count > 0 %>
@@ -26,7 +17,7 @@
     <ul class="thumb_display"> 
     <% @venue.past_shows.each do |b| %>
         <li>  
-            <%= "#{b.title}  | #{b.datetime_format(b.start_date)}-#{b.time_format(b.end_time)}" %>
+            <%= "#{b.title}  | #{b.time}" %>
             <br>    
             <%= link_to b.artist.name, artist_path(b.artist) %>
             <br> 

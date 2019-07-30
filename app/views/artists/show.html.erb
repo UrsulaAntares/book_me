@@ -1,16 +1,16 @@
 <h1><%=@artist.name%></h1>
 
 <%if current_user%>
-<%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-<%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
-<h5>What's on your mind?</h5>
-<%=form_for @post do |f| %>
-<%=f.hidden_field :artist_id, value: @artist.id%>
-<%=f.label :content%>
-<%=f.text_area  :content%>
-<%=f.file_field :media%>
-<%=f.submit "Create Post"%>
-<%end%>
+    <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
+    <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+    <h5>What's on your mind?</h5>
+    <%=form_for @post do |f| %>
+        <%=f.hidden_field :artist_id, value: @artist.id%>
+        <%=f.label :content%>
+        <%=f.text_area  :content%>
+        <%=f.file_field :media%>
+        <%=f.submit "Create Post"%>
+    <%end%>
 <%end%>
 
 <% if @artist.image_url%>
@@ -18,7 +18,7 @@
 <%end%>
 
 <%if @artist.avatar.attached?%>
-<%=image_tag @artist.avatar, class: "headshot"%>
+    <%=image_tag @artist.avatar, class: "headshot"%>
 <%end%>
 
 
@@ -52,9 +52,12 @@
     <h4>Upcoming Events:</h4>
     <% if @artist.bookings %>
         <%@artist.bookings.each do |booking|%>
-            <p><%=booking.title%></p>
-            <p><%=booking.format_time%>
-            <p><%=booking.description%></p>
+            <div class="tile">
+                    <p><%=booking.title%></p>
+                    <p><%=booking.date_format(booking.start_date)%></p>
+                    <p><%=booking.time%></p>
+                    <p><%=booking.description%></p>
+            </div>
         <%end%>
     <%end%>
 </div>
