@@ -20,7 +20,7 @@ class Booking < ApplicationRecord
     end
 
     def time_format(time)
-        time.strftime("%I:%M %p")
+        time.strftime("%l:%M %p")
     end
 
     def date

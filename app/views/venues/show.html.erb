@@ -49,6 +49,13 @@
     </ul>
 <% end %>
 
+<% if @venue.user_venue && (session[:user_id] == @venue.user_venue.user_id) %>
+    <div>
+    <%= link_to "Edit this Venue", edit_venue_path(@venue) %> <br><br>
+    <div> Book an Artist
+    <%= render './bookings/form' %></div>
+    </div>
+<% end %>
 
 <h2> Shows at this Venue </h2>
 <%= render './bookings/calendar' %>
