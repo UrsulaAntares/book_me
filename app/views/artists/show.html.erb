@@ -4,9 +4,10 @@
     <%=image_tag @artist.image_url, class: "icon"%>
 <%end%>
 
-<% if @artist.avatar.attached? %>
-    <%=image_tag @artist.avatar, class: "headshot"%>
+<%if @artist.avatar.attached?%>
+<%=image_tag @artist.avatar, class: "headshot"%>
 <%end%>
+
 
 <p><%=@artist.description%></p>
 

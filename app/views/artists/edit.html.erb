@@ -1,4 +1,4 @@
-<h1>New Artist Form</h1>
+<h1>Edit Artist</h1>
 
 <%if @artist.errors.any?%>
 <ul>
@@ -19,6 +19,5 @@
 <%=f.fields_for :genres, @artist.genres.build do |g|%>
 <%=g.text_field :name%><br>
 <%end%>
-<%=f.submit "Create Artist"%>
+<%=f.submit "Confirm Changes"%>
 <%end%>
-
