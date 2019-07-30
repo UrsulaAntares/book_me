@@ -1,0 +1,17 @@
+<h1> <%= @booking.title %> </h1>
+<p> <%= @booking.date_format(@booking.start_date) %> </p>
+<p> <%= @booking.time_format(@booking.start_date) %> - <%= @booking.time_format(@booking.end_time) %> </p>
+<h3> <%= link_to @booking.venue.name, @booking.venue %> | <%= @booking.venue.location %> </h3>
+<div><%= image_tag @booking.image_url %></div>
+
+<p> @booking.description </p>
+
+<div class="tile">
+    <%= image_tag @booking.artist.image_url, class: 'headshot' %>
+    <br>
+    <%= link_to @booking.artist.name, @booking.artist %> 
+</div>
+
+  
+
+
