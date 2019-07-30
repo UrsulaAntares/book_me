@@ -2,10 +2,19 @@
 
 <%if current_user%>
 <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
+<%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+<h5>What's on your mind?</h5>
+<%=form_for @post do |f| %>
+<%=f.hidden_field :artist_id, value: @artist.id%>
+<%=f.label :content%>
+<%=f.text_area  :content%>
+<%=f.file_field :media%>
+<%=f.submit "Create Post"%>
+<%end%>
 <%end%>
 
 <% if @artist.image_url%>
-    <%=image_tag @artist.image_url, class: "icon"%>
+    <%=image @artist.image_url, class: "icon"%>
 <%end%>
 
 <%if @artist.avatar.attached?%>
@@ -28,7 +37,12 @@
     <h4>Posts:</h4>
     <% if @artist.posts %>
         <% @artist.posts.each do |post|%>
+        <div>
             <p><%=post.content%></p>
+            <%if post.media.attached?%>
+            <%=image_tag post.media%>
+            <%end%>
+        </div>
         <%end%>
     <%end%>
 </div>

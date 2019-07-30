@@ -4,5 +4,6 @@ class User < ApplicationRecord
     has_many :user_artists
     has_many :artists, through: :user_artists
     has_many :user_venues
-    has_many :user_venues, through: :user_artists
+    has_many :venues, through: :user_venues
+    has_many :posts, through: :artists
 end

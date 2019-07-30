@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show]
+    # before_action :find_user, only: [:show]
     def new
         @user = User.new
     end
 
     def create
+        #byebug
         @user=User.new(user_params)
         if @user.save
             @user.save
@@ -15,16 +16,20 @@ class UsersController < ApplicationController
         end
     end
 
-    def show
+    def show #use current_user
+        @user = User.find_by(id: params[:id])
+        if @user.id != current_user.id
+            redirect_to user_path(current_user)
+        end
     end
 
     private
 
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
 
-    def find_user
-        @user = User.find_by(id: params[:id])
-    end
+    # def find_user
+    #     @user = User.find_by(id: params[:id])
+    # end
 end
