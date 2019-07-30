@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :artist_genres
   resources :artist_likes
   resources :genres
