@@ -11,10 +11,12 @@ class BookingsController < ApplicationController
     
     def new
         @booking = Booking.new
+        @booking.start_date = DateTime.now
     end
  
     def create
         @booking = Booking.new(booking_params)
+        @booking.artist = Artist.find_by(name: booking_params[:artist_id])
         if @booking.valid?
             @booking.save
             redirect_to booking_path(@booking)
