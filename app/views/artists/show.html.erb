@@ -14,7 +14,7 @@
 <%end%>
 
 <% if @artist.image_url%>
-    <%=image @artist.image_url, class: "icon"%>
+    <%=image_tag @artist.image_url, class: "icon"%>
 <%end%>
 
 <%if @artist.avatar.attached?%>

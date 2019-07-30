@@ -1,0 +1,52 @@
+<%= form_for @booking  do  |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div>
+        <%= f.label :start_date %>
+        <%= f.datetime_field(:start_date, :value => DateTime.now.strftime("%Y-%m-%dT%H:%M:00")ex, :min => DateTime.now) %>
+    </div>
+    <div>
+        <%= f.label :end_time %>
+        <%= f.datetime_field( :end_time, :value => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"), :min => DateTime.now)%>
+    </div>
+     <% unless @artist %><!--this hides the field when an artist is given so that an artist will get filled in automatically -->
+        <div>
+            <%= f.label :artist_id %> 
+            <%= f.text_field :artist_id, list: 'artists_autocomplete' %>
+            <datalist id='artists_autocomplete'>
+                <% Artist.all.each do |artist| %>
+                    <option name="<%= artist.id %>" value="<%= artist.name %>">
+                <% end %>
+            </datalist>
+        </div>
+    <% else %>
+        <div>
+            <%= f.hidden_field :artist_id, :value => @artist.id%>
+        </div>
+    <% end %>
+   <% unless @venue %><!--this hides the field when an @venue is given so that a venue will fill this in automatically -->
+        <div>
+            <%= f.label :venue_id %> <!--#make this a dataset next-->
+            <%= f.number_field :venue_id%>
+        </div>
+   <% else %>
+         <div>
+            <%= f.hidden_field :venue_id, :value => @venue.id%>
+        </div>
+   <% end %>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+    </div>
+    <div>
+        <%= f.label :image_url %>
+        <%= f.text_field :image_url %>
+    </div>
+
+
+    <%= submit_tag %>
+
+<% end %>
+
