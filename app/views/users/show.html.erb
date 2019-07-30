@@ -1,19 +1,26 @@
-<h1>Welcome, <%=@user.username%></h1>
-<%=button_to "logout", logout_path%>
+<h1>Welcome, <%=current_user.username%></h1>
 <%=button_to "Create a New Artist Page", new_artist_path, method: 'get'%>
 <%=button_to "Create a New Venue Page", new_venue_path, method: 'get'%>
 
 <div>
 <p>My Artists</p>
-<%@user.artists.each do |artist|%>
+<% if current_user.artists != [] %>
+<%current_user.artists.each do |artist|%>
 <p><%=link_to artist.name, artist_path(artist)%></p>
+<%end%>
+<%else%>
+<p>No Artists:</p>
 <%end%>
 </div>
 
 
 <div>
-<p>My Venues</p>
-<%@user.venues.each do |venue|%>
-<p><%=link_to venue.name, venue_path(artist)%></p>
+<p>My Venues:</p>
+<% if current_user.venues != [] %>
+<%current_user.venues.each do |venue|%>
+<p><%=link_to venue.name, venue_path(venue)%></p>
+<%end%>
+<%else%>
+<p>No Venues</p>
 <%end%>
 </div>

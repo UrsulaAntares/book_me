@@ -1,0 +1,13 @@
+<h1>New Post</h1>
+
+<%if @artist %>
+<p><%=@artist.name%></p>
+<%end%>
+
+<%=form_tag '/posts/new/:artist_id', method: 'post' do %>
+<%=hidden_field_tag :artist_id, @artist.id%>
+<%=label_tag :content%>
+<%=text_area_tag  "post[:content]"%>
+<%=file_field_tag "post[:media]"%>
+<%=submit_tag "Create Post"%>
+<%end%>
