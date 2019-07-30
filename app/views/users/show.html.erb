@@ -9,3 +9,11 @@
 <p><%=link_to artist.name, artist_path(artist)%></p>
 <%end%>
 </div>
+
+
+<div>
+<p>My Venues</p>
+<%@user.venues.each do |venue|%>
+<p><%=link_to venue.name, venue_path(artist)%></p>
+<%end%>
+</div>
