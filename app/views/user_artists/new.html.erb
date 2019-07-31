@@ -1,10 +1,15 @@
 <h1>Select which user to give admin access to your Artists</h1>
 
-<
+
 
 <%=form_for @user_artist do |f|%>
 <%=f.label "Select User by Username"%>
-<%=f.collection_select :user_id, User.other_users(current_user), :id, :username%>
+<%=f.text_field :user_id, list: 'users_autocomplete'%>
+<datalist id="users_autocomplete">
+<%current_user.other_users.each do |user|%>
+    <option value='<%=user.username%>'>
+    <%end%>
+    </datalist>
 <%=f.label "Select Artists for this User"%>
 <%=f.collection_check_boxes :artist_id, current_user.artists, :id, :name%>
 <%=f.submit "Submit"%>

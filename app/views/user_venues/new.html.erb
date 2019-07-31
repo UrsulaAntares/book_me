@@ -2,7 +2,12 @@
 
 <%=form_for @user_venue do |f|%>
 <%=f.label "Select User by Username"%>
-<%=f.collection_select :user_id, User.other_users(current_user), :id, :username%>
+<%=f.text_field :user_id, list: 'users_autocomplete'%>
+<datalist id="users_autocomplete">
+<%current_user.other_users.each do |user|%>
+    <option value='<%=user.username%>'>
+    <%end%>
+    </datalist>
 <%=f.label "Select Venues for this User"%>
 <%=f.collection_check_boxes :venue_id, current_user.venues, :id, :name%>
 <%=f.submit "Submit"%>
