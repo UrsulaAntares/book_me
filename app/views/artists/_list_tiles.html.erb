@@ -8,6 +8,7 @@
                     <%=image_tag artist.avatar, class: "headshot" %>
                 <%end%>
                 <p><%= artist.name %></p>
+                <p><%= pluralize(artist.artist_likes.count, "Endorsement") %></p>
             </a>
             <% artist.genres.each do |g| %>
                 <%= link_to g.name, genre_path(g) %> 
