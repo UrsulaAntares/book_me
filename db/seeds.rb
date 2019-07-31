@@ -61,13 +61,13 @@ hamilton = Venue.create(name: 'Hamilton', location: 'Downtown', description: 'Di
 
 
 Booking.create(title: 'American Tour in DC', artist: lizzo, venue: ninethirty, start_date: DateTime.new(2019, 9, 10, 19, 30), 
-    end_time: DateTime.new(2019, 9, 10, 21), description: 'See lizzo live!', start_date_date: DateTime.new(2019, 9, 10, 11))
+    end_time: DateTime.new(2019, 9, 10, 21), description: 'See lizzo live!', start_date: DateTime.new(2019, 9, 10, 11))
 Booking.create(title: 'Purple Mountain Tour', artist: db, venue: blackcat, start_date: DateTime.new(2019, 8, 13, 19, 30), 
-    end_time: DateTime.new(2019, 8, 13, 21), description: 'New Album Release', start_date_date: Date.new(2019, 8, 13))
+    end_time: DateTime.new(2019, 8, 13, 21), description: 'New Album Release', start_date: Date.new(2019, 8, 13))
 Booking.create(title: "Don't call it a comeback", artist: db, venue: anthem, start_date: DateTime.new(2019, 8, 3, 19, 30), 
-    end_time: DateTime.new(2019, 8, 3, 21), description: 'It costs 25 cents to wake up in the morning.', start_date_date: Date.new(2019, 8, 3,))
+    end_time: DateTime.new(2019, 8, 3, 21), description: 'It costs 25 cents to wake up in the morning.', start_date: Date.new(2019, 8, 3,))
 Booking.create(title: 'Taking the flute to the people', artist: lizzo, venue: anthem, start_date: DateTime.new(2019, 8, 20, 19, 30), 
-    end_time: DateTime.new(2019, 8, 20, 21), description: 'Flutes flutes flutes', start_date_date: Date.new(2019, 8, 20))
+    end_time: DateTime.new(2019, 8, 20, 21), description: 'Flutes flutes flutes', start_date: Date.new(2019, 8, 20))
 
 ArtistLike.create(artist: b, venue: ninethirty)
 ArtistLike.create(artist: b, venue: blackcat)

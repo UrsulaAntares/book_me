@@ -1,6 +1,7 @@
 
 <% @venues.each do |venue| %>
-        <div class="tile <%= current_user.venues.include?(venue) ? "mine" : "" %> <%= @artist && @artist.venues.include?(venue) ? "played" : "" %>">
+        <div class="tile <%if current_user %>
+             current_user.venues.include?(venue) ? "mine" : "" %> <%= @artist && @artist.venues.include?(venue) ? "played" : "" %>"<%end%>>
             <a href="<%=venue_path(venue)%>">
                  <%if venue.image_url%>
                      <%= image_tag venue.image_url, class: "headshot" %>

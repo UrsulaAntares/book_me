@@ -5,10 +5,12 @@
     <div>
       <%= booking.title %>
       <br>
+     
       <a class="tile" href="<%=artist_path(booking.artist)%>">
         <% if booking.artist.avatar.attached? %>
           <%=image_tag booking.artist.avatar, class: 'icon' %>
-        <% else %>
+          <%end%>
+        <% if booking.artist.image_url %>
          <img class="icon" src="<%=booking.image_url||booking.artist.image_url||booking.venue.image_url%>" />
         <% end %>
         <%= booking.artist.name %>
