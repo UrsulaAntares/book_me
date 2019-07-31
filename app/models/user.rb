@@ -6,4 +6,11 @@ class User < ApplicationRecord
     has_many :user_venues
     has_many :venues, through: :user_venues
     has_many :posts, through: :artists
+
+
+    # def other_users
+    #     User.all.select do |user|
+    #         user != current_user
+    #     end
+    # end
 end

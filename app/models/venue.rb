@@ -2,8 +2,8 @@ class Venue < ApplicationRecord
     has_many :bookings
     has_many :artists, through: :bookings
     has_many :artist_likes
-    has_one :user_venue
-    has_one :user, through: :user_venue
+    has_many :user_venues
+    has_many :users, through: :user_venues
 
     def future_shows
         self.bookings.select {|b| b.start_date > DateTime.now} 

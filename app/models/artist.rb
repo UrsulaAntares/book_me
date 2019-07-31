@@ -9,8 +9,8 @@ class Artist < ApplicationRecord
     has_many :venues, through: :artist_likes
     has_one_attached :avatar
     validates :name, presence: true
-    has_one :user_artist
-    has_one :user, through: :user_artist
+    has_many :user_artists
+    has_many :users, through: :user_artists
     
 
 end

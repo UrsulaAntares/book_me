@@ -3,6 +3,7 @@
 <%if current_user%>
 <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
 <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+<%=link_to "Add Admin", new_user_artist_path%>
 <h5>What's on your mind?</h5>
 <%=form_for @post do |f| %>
 <%=f.hidden_field :artist_id, value: @artist.id%>
@@ -14,7 +15,7 @@
 <%end%>
 
 <% if @artist.image_url%>
-    <%=image @artist.image_url, class: "icon"%>
+    <%=image_tag @artist.image_url, class: "icon"%>
 <%end%>
 
 <%if @artist.avatar.attached?%>

@@ -1,0 +1,11 @@
+<h1>Select which user to give admin access to your Venues</h1>
+
+<%@other_users = User.all.select {|user| user != current_user}%>
+
+<%=form_for @user_venue do |f|%>
+<%=f.label "Select User by Username"%>
+<%=f.collection_select :user_id, @other_users, :id, :username%>
+<%=f.label "Select Venues for this User"%>
+<%=f.collection_check_boxes :venue_id, current_user.venues, :id, :name%>
+<%=f.submit "Submit"%>
+<%end%>
