@@ -3,14 +3,14 @@
 <%=button_to "Create a New Venue Page", new_venue_path, method: 'get'%>
 
 <div>
-<p>My Artists</p> <%=link_to "Add Admin for Artists", new_user_artist_path%>
-<% if current_user.artists != [] %>
-<%current_user.artists.each do |artist|%>
-<p><%=link_to artist.name, artist_path(artist)%></p>
-<%end%>
-<%else%>
-<p>No Artists:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            r</p>
-<%end%>
+    <p>My Artists</p> <%=link_to "Add Admin for Artists", new_user_artist_path%>
+    <% if current_user.artists != [] %>
+        <%current_user.artists.each do |artist|%>
+            <p><%=link_to artist.name, artist_path(artist)%></p>
+        <%end%>
+    <%else%>
+        <p>No Artists</p>         
+    <%end%>
     <p>My Artists</p>
     <% if current_user.artists != [] %>
         <%= render './artists/list_tiles' %>
@@ -24,12 +24,12 @@
 
 
 <div>
-<p>My Venues:</p> <%=link_to "Add Admin for Venues", new_user_venue_path%>
-<% if current_user.venues != [] %>
-<%current_user.venues.each do |venue|%>
-<p><%=link_to venue.name, venue_path(venue)%></p>
-<%end%>
-<%else%>
-<p>No Venues</p>
-<%end%>
+    <p>My Venues:</p> <%=link_to "Add Admin for Venues", new_user_venue_path%>
+    <% if current_user.venues != [] %>
+        <%current_user.venues.each do |venue|%>
+            <p><%=link_to venue.name, venue_path(venue)%></p>
+        <%end%>
+    <%else%>
+        <p>No Venues</p>
+    <%end%>
 </div>
