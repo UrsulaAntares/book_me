@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+
+    def current_user
+        session[:user_id]
+    end
     
     def new
         if current_user

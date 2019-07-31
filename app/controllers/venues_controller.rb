@@ -4,6 +4,7 @@ class VenuesController < ApplicationController
 
     def show
         @bookings = @venue.bookings
+        @booking = Booking.new
     end
 
     def index

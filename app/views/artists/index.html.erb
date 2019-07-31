@@ -1,7 +1,10 @@
 <h1>Artists</h1>
 
+<%= render 'list_tiles' %>
+<!--#filter by genre?-->
+
 <%@artists.each do |artist|%>
-<p><%=link_to artist.name, artist_path(artist)%></p>
+    <p><%=link_to artist.name, artist_path(artist)%></p>
 <%end%>
 
 

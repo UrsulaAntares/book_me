@@ -19,7 +19,7 @@
 <%end%>
 
 <%if @artist.avatar.attached?%>
-<%=image_tag @artist.avatar, class: "headshot"%>
+    <%=image_tag @artist.avatar, class: "headshot"%>
 <%end%>
 
 
@@ -53,9 +53,12 @@
     <h4>Upcoming Events:</h4>
     <% if @artist.bookings %>
         <%@artist.bookings.each do |booking|%>
-            <p><%=booking.title%></p>
-            <p><%=booking.format_time%>
-            <p><%=booking.description%></p>
+            <div class="tile">
+                    <p><%=booking.title%></p>
+                    <p><%=booking.date_format(booking.start_date)%></p>
+                    <p><%=booking.time%></p>
+                    <p><%=booking.description%></p>
+            </div>
         <%end%>
     <%end%>
 </div>

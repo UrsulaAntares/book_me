@@ -45,7 +45,11 @@ class ArtistsController < ApplicationController
         artist = Artist.find_by(id: params[:id])
         user = artist.user
         artist.destroy
-        redirect_to user_path(user)
+        if user
+            redirect_to user_path(user) #problem happens when a user wants to delete an artist that they do not own (since the option is currently exposed to them)
+        else
+            redirect_to artists_path
+        end
     end
 
     private

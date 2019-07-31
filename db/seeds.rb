@@ -1,16 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 
-Genre.destroy_all
-Artist.destroy_all
-Booking.destroy_all
-Venue.destroy_all
+# Genre.destroy_all
+# Artist.destroy_all
+# Booking.destroy_all
+# Venue.destroy_all
 
 
 pop = Genre.create(name: "Pop")
@@ -27,8 +20,8 @@ soul = Genre.create(name: "Soul")
 lizzo = Artist.create(name: 'Lizzo', description: 'bad ass musician', image_url: 'https://dazedimg-dazedgroup.netdna-ssl.com/1600/azure/dazed-prod/1260/5/1265896.jpg')
 db = Artist.create(name: 'Dave Berman', description: 'twangy emo', image_url: 'https://static.spin.com/files/2019/05/Screen-Shot-2019-05-10-at-10.41.52-AM-1557499348-640x339.png')
 a = Artist.create(name:'Lucius', description: 'Alien folk-pop', image_url:'https://image-ticketfly.imgix.net/00/02/83/92/04-og.jpg' ) 
-b = Artist.create(name:'Same Cooke', description: '', image_url:'https://e-cdns-images.dzcdn.net/images/artist/da87d69a29ce6860f09f7070c060a139/500x500.jpg' ) 
-c = Artist.create(name:'', description: '', image_url:'' ) 
+b = Artist.create(name:'Sam Cooke', description: '', image_url:'https://e-cdns-images.dzcdn.net/images/artist/da87d69a29ce6860f09f7070c060a139/500x500.jpg' ) 
+# c = Artist.create(name:'', description: '', image_url:'' ) 
 # d = Artist.create(name:'', description: '', image_url:'' ) 
 # e = Artist.create(name:'', description: '', image_url:'' ) 
 # f = Artist.create(name:'', description: '', image_url:'' ) 
@@ -76,16 +69,16 @@ Booking.create(title: "Don't call it a comeback", artist: db, venue: anthem, sta
 Booking.create(title: 'Taking the flute to the people', artist: lizzo, venue: anthem, start_date: DateTime.new(2019, 8, 20, 19, 30), 
     end_time: DateTime.new(2019, 8, 20, 21), description: 'Flutes flutes flutes', start_date_date: Date.new(2019, 8, 20))
 
-ArtistLike.create(artist: lizzo, venue: ninethirty)
-ArtistLike.create(artist: lizzo, venue: blackcat)
-ArtistLike.create(artist: lizzo, venue: uhaul)
-ArtistLike.create(artist: db, venue: rnr)
-ArtistLike.create(artist: db, venue: anthem)
-ArtistLike.create(artist: db, venue: ninethirty)
-ArtistLike.create(artist: db, venue: blackcat)
-ArtistLike.create(artist: db, venue: uhaul)
-ArtistLike.create(artist: lizzo, venue: rnr)
-ArtistLike.create(artist: lizzo, venue: anthem)
+ArtistLike.create(artist: b, venue: ninethirty)
+ArtistLike.create(artist: b, venue: blackcat)
+ArtistLike.create(artist: a, venue: uhaul)
+ArtistLike.create(artist: b, venue: rnr)
+ArtistLike.create(artist: b, venue: anthem)
+ArtistLike.create(artist: b, venue: ninethirty)
+ArtistLike.create(artist: b, venue: blackcat)
+ArtistLike.create(artist: b, venue: uhaul)
+ArtistLike.create(artist: a, venue: rnr)
+ArtistLike.create(artist: a, venue: anthem)
 
 Post.create(artist: lizzo, content: 'so excited!')
 Post.create(artist: db, content: 'no comment.')
