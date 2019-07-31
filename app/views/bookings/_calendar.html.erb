@@ -7,7 +7,7 @@
       <br>
       <a class="tile" href="<%=artist_path(booking.artist)%>">
         <% if booking.artist.avatar.attached? %>
-          <% image_tag booking.artist.avatar class: 'icon' %>
+          <%=image_tag booking.artist.avatar, class: 'icon' %>
         <% else %>
          <img class="icon" src="<%=booking.image_url||booking.artist.image_url||booking.venue.image_url%>" />
         <% end %>
@@ -16,5 +16,5 @@
       <br>
       
     </div>
-  <% end %>
+<% end %>
 <% end %>

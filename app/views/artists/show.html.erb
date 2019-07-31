@@ -48,7 +48,10 @@
                 </video>
                 <%end%>
             <%end%>
-        </div>
+        <%if current_user.artists.include?(@artist)%>
+            <%=link_to "delete", post_path(post), method: 'delete', data: {confirm: "are you sure?"} %>
+            <%end%>
+         </div>
         <%end%>
     <%end%>
 </div>

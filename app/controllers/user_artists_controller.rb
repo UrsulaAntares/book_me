@@ -5,12 +5,12 @@ class UserArtistsController < ApplicationController
     end
 
     def create
-        user = user_artist_params[:user_id]
-        user_object = User.find_by(id: user)
+        user_object = User.find_by(username: user_artist_params[:user_id])
+       # byebug
         artist_ids = user_artist_params[:artist_id]
         artist_ids.each do |id|
             if id != "" && !user_object.artists.include?(Artist.find_by(id: id))
-                UserArtist.create(user_id: user, artist_id: id)
+                UserArtist.create(user_id: user_object.id, artist_id: id)
             end
         end
             redirect_to user_path(current_user)

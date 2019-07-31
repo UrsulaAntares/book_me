@@ -5,6 +5,39 @@ class ArtistsController < ApplicationController
         @artists = Artist.all
     end
 
+    def search
+        #byebug
+        @artists = []
+        if search_params[:g] != ""
+        genre = Genre.find_by(name: search_params[:g])
+        #byebug
+        @artists = genre.artists
+        if @artists == []
+            @artists = Artist.all
+            @message = "There are no artists by that genre."
+        end
+    end
+        #byebug
+        if search_params[:q] != ""
+        artist = Artist.find_by(name: search_params[:q])
+        #byebug
+        if !artist.nil? 
+        # if !@artists.include?(artist)
+            @artists << artist
+        # end
+        # byebug
+    end
+            @artists.uniq
+    end
+    #byebug
+    if @artists.nil? || @artists.empty?
+        @artists = Artist.all
+        @message = "No artists by that search."
+    end
+        render :index
+        
+    end
+
     def show 
         @bookings = @artist.bookings
         @post = Post.new
@@ -52,6 +85,8 @@ class ArtistsController < ApplicationController
         end
     end
 
+   
+
     private
 
     def find_artist
@@ -64,6 +99,10 @@ class ArtistsController < ApplicationController
 
     def require_login
         return head(:forbidden) unless session.include? :user_id
+    end
+
+    def search_params
+        params.permit(:q, :g)
     end
 end
 

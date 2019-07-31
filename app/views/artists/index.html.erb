@@ -1,5 +1,22 @@
 <h1>Artists</h1>
 
+<%=form_tag "/search", method: "get" do %>
+    <%=label_tag(:q, "Artist Name:")%>
+    <%=text_field_tag(:q)%>
+    <%=label_tag(:g, "Filter by Genre:")%>
+    <input type="text" name="g" list="genres">
+    <datalist id='genres'>
+    <%Genre.all.each do |genre|%>
+        <option value="<%=genre.name%>">
+    <%end%>
+    </datalist></input>
+    <%=submit_tag("Search")%>
+    <%end%>
+
+<%if @message%>
+<p><%=@message%></p>
+<%end%>
+
 <%= render 'list_tiles' %>
 <!--#filter by genre?-->
 

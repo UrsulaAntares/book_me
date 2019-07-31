@@ -11,7 +11,13 @@
 <p> <%= @booking.description %></p>
 
 <div class="tile">
+<%if @booking.artist.image_url%>
     <%= image_tag @booking.artist.image_url, class: 'headshot' %>
+<%end%>
+
+<%if @booking.artist.avatar.attached?%>
+    <%= image_tag @booking.artist.avatar, class: 'headshot' %>
+<%end%>
     <br>
     <%= link_to @booking.artist.name, @booking.artist %> 
 </div>

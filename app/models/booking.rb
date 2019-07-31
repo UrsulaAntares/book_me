@@ -4,6 +4,7 @@ class Booking < ApplicationRecord
     belongs_to :artist
     belongs_to :venue
     validates :title, presence: true
+    has_one_attached :show_pic
 
     def format_time
         "Time: #{self.start_date.strftime("%A, %B %d, %Y at %I:%M %p")} to #{self.end_time.strftime("%I:%M %p")}."

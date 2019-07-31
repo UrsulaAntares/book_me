@@ -16,6 +16,13 @@ class PostsController < ApplicationController
             
     end
 
+    def destroy
+        @post = Post.find_by(id: params[:id])
+        artist = @post.artist
+        @post.destroy
+        redirect_to artist_path(artist)
+    end
+
     private
 
     def artist_params
