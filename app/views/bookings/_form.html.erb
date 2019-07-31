@@ -5,11 +5,11 @@
     </div>
     <div>
         <%= f.label :start_date %>
-        <%= f.datetime_field(:start_date, :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00")) %>
+        <%= f.datetime_field(:start_date, :default => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"), :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00")) %>
     </div>
     <div>
         <%= f.label :end_time %>
-        <%= f.datetime_field(:end_time, :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"))%>
+        <%= f.datetime_field(:end_time, :default => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"), :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"))%>
     </div>
      <% unless @artist %><!--this hides the field when an artist is given so that an artist will get filled in automatically -->
         <div>
