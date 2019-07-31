@@ -1,7 +1,11 @@
 <%@artists.each do |artist|%>
     <a href="<%=artist_path(artist)%>">
         <div class="tile">
+            <%if artist.image_url%>
             <%= image_tag artist.image_url, class: "headshot" %>
+            <%elsif artist.avatar.attached?%>
+            <%=image_tag artist.avatar, class: "headshot" %>
+            <%end%>
             <p><%= artist.name %></p>
             <p><%= artist.genres.map {|g| g.name}.join(', ') %> </p>
         </div>

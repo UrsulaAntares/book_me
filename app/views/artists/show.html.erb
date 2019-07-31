@@ -41,7 +41,12 @@
         <div>
             <p><%=post.content%></p>
             <%if post.media.attached?%>
-            <%=image_tag post.media%>
+                <%if post.media.blob.content_type.include?("image" || "jpeg")%>
+                <%=image_tag post.media%>
+                <% elsif post.media.blob.content_type.include?("video")%>
+                <video src='<%=rails_blob_path(post.media)%>' type="video/mp4" controls>
+                </video>
+                <%end%>
             <%end%>
         </div>
         <%end%>
