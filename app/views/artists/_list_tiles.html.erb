@@ -21,6 +21,14 @@
                            <%= f.submit "Endorse" %>     
                         <% end %>
                     <% end %>
+                    <!--end endorsement buttons -->
+                    <!--begin booking buttons -->
+                        <%= form_for(@booking, url: {controller: 'bookings', action: 'create'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_name, :value => @venue.name%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Book this Artist" %>     
+                        <% end %>
+                    <!--end booking buttons -->
                     </div>
                 <% end %>
         </div>
