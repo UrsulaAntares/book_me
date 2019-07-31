@@ -40,7 +40,7 @@
     </ul>
 <% end %>
 
-<% if @venue.user_venue && (session[:user_id] == @venue.user_venue.user_id) %>
+<% if current_user.venues.include?(@venue) %>
     <div>
     <%= link_to "Edit this Venue", edit_venue_path(@venue) %> <br><br>
     <div> Book an Artist

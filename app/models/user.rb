@@ -8,9 +8,9 @@ class User < ApplicationRecord
     has_many :posts, through: :artists
 
 
-    # def other_users
-    #     User.all.select do |user|
-    #         user != current_user
-    #     end
-    # end
+    def self.other_users(current_user)
+        User.all.select do |user|
+            user != current_user
+        end
+    end
 end
