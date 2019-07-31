@@ -1,0 +1,11 @@
+<h1> Genres </h1>
+
+<% @genres.each do |g| %>
+    <div class="tile" >
+        <%= link_to g.name, genre_path(g) %><br>
+        <% g.artists.each do |ga| %>
+            <%= ga.name %><br>
+            <%= image_tag ga.image_url, class: "icon" %>
+        <% end %>
+    </div>
+<% end %>
