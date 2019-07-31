@@ -71,8 +71,20 @@
     <%end%>
 </div>
 
-<h2>Endorsements:</h2>
+<% if @artist.artist_likes %>
+    <h2>Endorsements:</h2>
+    <%= pluralize(@artist.artist_likes.count, "Endorsement") %><br>
+    <% @artist.artist_likes.each do |l|  %>
+        <div class="tile" >
+            <% if l.venue.image_url %>
+                <%= image_tag l.venue.image_url, class: "icon" %><br>
+            <% end %>
+            <%= link_to l.venue.name, l.venue %>
+        </div>
+    <% end %>
 
+    
+<% end %>
 
 
 
