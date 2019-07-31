@@ -17,7 +17,6 @@ class BookingsController < ApplicationController
  
     def create
         @booking = Booking.new(booking_params)
-        @booking.artist = Artist.find_by(name: booking_params[:artist_id])
         if @booking.valid?
             @booking.save
             redirect_to booking_path(@booking)
@@ -28,6 +27,7 @@ class BookingsController < ApplicationController
 
     def edit
     end
+
 
     def update
         if @booking.update(booking_params)
@@ -45,7 +45,8 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-        params.require(:booking).permit(:start_date, :end_time, :artist_id, :venue_id, :description, :title, :image_url)
+        params.require(:booking).permit(:start_date, :end_time, :artist_name, 
+            :venue_name, :description, :title, :image_url)
     end
 
 end

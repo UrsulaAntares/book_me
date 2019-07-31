@@ -5,31 +5,36 @@
     </div>
     <div>
         <%= f.label :start_date %>
-        <%= f.datetime_field(:start_date) %>
+        <%= f.datetime_field(:start_date, :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00")) %>
     </div>
     <div>
         <%= f.label :end_time %>
-        <%= f.datetime_field(:end_time)%>
+        <%= f.datetime_field(:end_time, :min => DateTime.now.strftime("%Y-%m-%dT%H:%M:00"))%>
     </div>
      <% unless @artist %><!--this hides the field when an artist is given so that an artist will get filled in automatically -->
         <div>
-            <%= f.label :artist_id %> 
-            <%= f.text_field :artist_id, list: 'artists_autocomplete' %>
+            <%= f.label :artist_name %> 
+            <%= f.text_field :artist_name, list: 'artists_autocomplete' %>
             <datalist id='artists_autocomplete'>
                 <% Artist.all.each do |artist| %>
-                    <option name="<%= artist.id %>" value="<%= artist.name %>">
+                    <option value="<%= artist.name %>">
                 <% end %>
             </datalist>
         </div>
     <% else %>
         <div>
-            <%= f.hidden_field :artist_id, :value => @artist.id%>
+            <%= f.hidden_field :artist_name, :value => @artist.name%>
         </div>
     <% end %>
    <% unless @venue %><!--this hides the field when an @venue is given so that a venue will fill this in automatically -->
         <div>
-            <%= f.label :venue_id %> <!--#make this a dataset next-->
-            <%= f.number_field :venue_id%>
+            <%= f.label :venue_name %> <!--#make this a dataset next-->
+            <%= f.text_field :venue_name, list: 'venues_autocomplete' %>
+            <datalist id='venues_autocomplete'>
+                <% Venue.all.each do |venue| %>
+                    <option value="<%= venue.name %>">
+                <% end %>
+            </datalist>
         </div>
    <% else %>
          <div>

@@ -30,5 +30,21 @@ class Booking < ApplicationRecord
     def date
         self.start_date.to_date
     end
+
+    def artist_name
+        self.artist ? self.artist.name : nil
+    end
+
+    def artist_name=(name)
+        self.artist = Artist.find_by(name: name)
+    end
     
+    def venue_name
+        self.venue ? self.venue.name : nil    
+    end
+
+    def venue_name=(name)
+        self.venue = Venue.find_by(name: name)
+    end
+
 end

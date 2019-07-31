@@ -1,0 +1,12 @@
+<% @bookings.each do |booking|%>
+    <div class="tile">
+            <% if booking.image_url %> 
+                <%=  image_tag booking.image_url, class: 'icon'  %>
+            <% end %>
+            <p><%=link_to booking.title, booking_path(booking)%></p>
+            <p><%=booking.artist.name%></p>
+            <p><%=booking.date_format(booking.start_date)%></p>
+            <p><%=booking.time%></p>
+            <p><%=booking.description%></p>
+    </div>
+<% end %>
