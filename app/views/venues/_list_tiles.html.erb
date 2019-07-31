@@ -1,0 +1,14 @@
+
+<% @venues.each do |venue| %>
+        <div class="tile <%= current_user.venues.include?(venue) ? "mine" : "" %> <%= @artist && @artist.venues.include?(venue) ? "played" : "" %>">
+            <a href="<%=venue_path(venue)%>">
+                 <%if venue.image_url%>
+                     <%= image_tag venue.image_url, class: "headshot" %>
+                 <%elsif venue.avatar.attached?%>
+                    <%=image_tag venue.avatar, class: "headshot" %>
+                 <%end%>
+                <p><%= venue.name %></p>
+            </a>
+                <p><%= venue.location %> </p>
+        </div>
+<% end %>

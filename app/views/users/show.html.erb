@@ -24,12 +24,12 @@
 
 
 <div>
-<p>My Venues:</p> <%=link_to "Add Admin for Venues", new_user_venue_path%>
-<% if current_user.venues != [] %>
-<%current_user.venues.each do |venue|%>
-<p><%=link_to venue.name, venue_path(venue)%></p>
-<%end%>
-<%else%>
-<p>No Venues</p>
-<%end%>
+    <p>My Venues:</p> <%=link_to "Add Admin for Venues", new_user_venue_path%>
+    <% if current_user.venues != [] %>
+        <%current_user.venues.each do |venue|%>
+            <p><%=link_to venue.name, venue_path(venue)%></p>
+        <%end%>
+    <%else%>
+        <p>No Venues</p>
+    <%end%>
 </div>

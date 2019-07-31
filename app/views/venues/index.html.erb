@@ -1,7 +1,18 @@
 <h1>All Venues</h1>
 
+  <%= form_tag(venues_path, method: "get") do %>
+    <%= label_tag(:q, "Search for a venue by location, category, or name:") %>
+    <%= text_field_tag(:q, params[:q]) %>
+    <%= submit_tag ("Search")%>
+  <% end %>
+
+<%= render 'list_tiles' %>
+
+
 <ul>
     <% @venues.each do |v| %>
         <li> <%= link_to v.name, venue_path(v)  %> </li>
     <% end %>
 </ul>
+
+

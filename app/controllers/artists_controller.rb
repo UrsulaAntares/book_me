@@ -41,6 +41,7 @@ class ArtistsController < ApplicationController
     def show 
         @bookings = @artist.bookings
         @post = Post.new
+        @venues = @artist.venues
     end
 
     def new

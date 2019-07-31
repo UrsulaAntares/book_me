@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_161003) do
+ActiveRecord::Schema.define(version: 2019_07_31_192542) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_161003) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url", default: "http://isneat.net/sites/isneat.net/files/styles/portfolio_650xauto/public/greenhouse-2_0029_SoftAlignedDark_0.jpg"
   end
 
 end
