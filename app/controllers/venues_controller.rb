@@ -5,6 +5,7 @@ class VenuesController < ApplicationController
     def show
         @bookings = @venue.bookings
         @booking = Booking.new
+        @artists = @venue.artists
     end
 
     def index
@@ -30,6 +31,7 @@ class VenuesController < ApplicationController
         require_login
     end
 
+    
     def update
         if @venue.valid?
             @venue.update(venue_params)
@@ -38,8 +40,22 @@ class VenuesController < ApplicationController
             render 'edit'
         end
     end
+    
+    def endorse
+        venue = Venue.find(venue_params[:venue_id])
+        artist = Artist.find_by(name: venue_params[:artist_name])
+        like = venue.artist_likes.build(artist: artist)
+        like.save
+        redirect_to venue_path(venue)
+    end
 
-
+    def unendorse
+        venue = Venue.find(venue_params[:venue_id])
+        artist = Artist.find_by(name: venue_params[:artist_name])
+        likes = venue.artist_likes.select { |al| al.artist_id == artist.id }
+        likes.each {|l| l.delete }
+        redirect_to venue_path(venue)
+    end
 
 
     private
@@ -49,7 +65,7 @@ class VenuesController < ApplicationController
     end
     
     def venue_params
-        params.require(:venue).permit(:name, :location, :category, :capacity, :description)
+        params.require(:venue).permit(:name, :location, :category, :capacity, :description, :artist_name, :venue_id)
     end
 
     def require_login

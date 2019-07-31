@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
     # has_calendar 
     belongs_to :artist
     belongs_to :venue
-   
+    validates :title, presence: true
 
     def format_time
         "Time: #{self.start_date.strftime("%A, %B %d, %Y at %I:%M %p")} to #{self.end_time.strftime("%I:%M %p")}."

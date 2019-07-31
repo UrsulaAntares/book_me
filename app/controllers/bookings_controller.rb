@@ -17,6 +17,12 @@ class BookingsController < ApplicationController
  
     def create
         @booking = Booking.new(booking_params)
+        if !@booking.start_date
+            @booking.start_date = DateTime.now.strftime("%Y-%m-%dT%H:%M:00")
+        end
+        if !@booking.end_time
+            @booking.end_time = DateTime.now.strftime("%Y-%m-%dT%H:%M:00")
+        end
         if @booking.valid?
             @booking.save
             redirect_to booking_path(@booking)

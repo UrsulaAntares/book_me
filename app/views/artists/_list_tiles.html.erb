@@ -1,13 +1,44 @@
+
+        
 <%@artists.each do |artist|%>
-    <a href="<%=artist_path(artist)%>">
+    
         <div class="tile">
-            <%if artist.image_url%>
-            <%= image_tag artist.image_url, class: "headshot" %>
-            <%elsif artist.avatar.attached?%>
-            <%=image_tag artist.avatar, class: "headshot" %>
-            <%end%>
-            <p><%= artist.name %></p>
-            <p><%= artist.genres.map {|g| g.name}.join(', ') %> </p>
+            <a href="<%=artist_path(artist)%>">
+                 <%if artist.image_url%>
+                     <%= image_tag artist.image_url, class: "headshot" %>
+                 <%elsif artist.avatar.attached?%>
+                    <%=image_tag artist.avatar, class: "headshot" %>
+                 <%end%>
+                <p><%= artist.name %></p>
+                <p><%= artist.genres.map {|g| g.name}.join(', ') %> </p>
+            </a>
+                <% if @venue && current_user.venues.include?(@venue) %> 
+                    <div>
+                    <% if  @venue.artist_likes.select {|l| l.artist == artist}.count >= 1 %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'unendorse'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_id, :value => @venue.id%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Un-Endorse" %>     
+                    <% end %>
+                    <% else %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'endorse'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_id, :value => @venue.id%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Endorse" %>     
+                        <% end %>
+                    <% end %>
+                    <!--end endorsement buttons -->
+                    <!--begin booking buttons -->
+                        <%= form_for(@booking, url: {controller: 'bookings', action: 'create'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_name, :value => @venue.name%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Book this Artist" %>     
+                        <% end %>
+                    <!--end booking buttons -->
+                    </div>
+                <% end %>
         </div>
-    </a>
+   
 <%end%>
+
+
