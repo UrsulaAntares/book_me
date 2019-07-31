@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   get '/home', to: 'static#home'
+  post '/venues/endorse', to: 'venues#endorse'
+  post '/venues/unendorse', to: 'venues#unendorse'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

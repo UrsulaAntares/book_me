@@ -3,15 +3,16 @@
 <%=button_to "Create a New Venue Page", new_venue_path, method: 'get'%>
 
 <div>
-<p>My Artists</p>
-<% if current_user.artists != [] %>
-<%current_user.artists.each do |artist|%>
-<p><%=link_to artist.name, artist_path(artist)%></p>
-<%end%>
-<%else%>
-<p>No Artists:</p>
-<%end%>
+    <p>My Artists</p>
+    <% if current_user.artists != [] %>
+        <%= render './artists/list_tiles' %>
+    <%else%>
+        <p>No Artists</p>
+    <%end%>
 </div>
+
+
+
 
 
 <div>

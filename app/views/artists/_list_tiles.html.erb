@@ -1,9 +1,30 @@
 <%@artists.each do |artist|%>
-    <a href="<%=artist_path(artist)%>">
+    
         <div class="tile">
-            <%= image_tag artist.image_url, class: "headshot" %>
-            <p><%= artist.name %></p>
-            <p><%= artist.genres.map {|g| g.name}.join(', ') %> </p>
+            <a href="<%=artist_path(artist)%>">
+                <%= image_tag artist.image_url, class: "headshot" %>
+                <p><%= artist.name %></p>
+                <p><%= artist.genres.map {|g| g.name}.join(', ') %> </p>
+            </a>
+                <% if @venue && @venue.user_venue && (session[:user_id] == @venue.user_venue.user_id) %> 
+                    <div>
+                    <% if  @venue.artist_likes.select {|l| l.artist == artist}.count >= 1 %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'unendorse'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_id, :value => @venue.id%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Un-Endorse" %>     
+                    <% end %>
+                    <% else %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'endorse'}, method: :post) do |f| %>
+                           <%= f.hidden_field :venue_id, :value => @venue.id%>
+                           <%= f.hidden_field :artist_name, :value => artist.name%>
+                           <%= f.submit "Endorse" %>     
+                        <% end %>
+                    <% end %>
+                    </div>
+                <% end %>
         </div>
-    </a>
+   
 <%end%>
+
+

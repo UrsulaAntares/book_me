@@ -21,6 +21,8 @@ class UsersController < ApplicationController
         if @user.id != current_user.id
             redirect_to user_path(current_user)
         end
+        @artists = @user.artists 
+        # current_user.artists
     end
 
     private
