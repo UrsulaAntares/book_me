@@ -1,117 +1,120 @@
-<h1><%=@artist.name%></h1>
+<div class="content">
+    <h1 class="title"><%=@artist.name%></h1>
 
-<!--Headshot -->
-<% if @artist.image_url%>
-    <%=image_tag @artist.image_url, class: "headshot"%>
-<% elsif @artist.avatar.attached?%>
-    <%=image_tag @artist.avatar, class: "headshot"%>
- <%else%>
-    <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
-<%end%>
+    <!--Headshot -->
+    <% if @artist.image_url%>
+        <%=image_tag @artist.image_url, class: "headshot"%>
+    <% elsif @artist.avatar.attached?%>
+        <%=image_tag @artist.avatar, class: "headshot"%>
+    <%else%>
+        <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
+    <%end%>
 
 
 
 
-<!--likes-->
+    <!--likes-->
 
-<div class="likes"><%= pluralize(@artist.user_likes_artists.count, "Like") %></div>
-<% if @artist.user_likes_artists %>
-    <%= @artist.user_likes_artists.map { |l| l.user.username}.join(', ')  %>
-<% end %>
-
-<!--description -->
-
-<p><%=@artist.description%></p>
-
-<!--buttons to like; any user can-->
-<% if current_user %>
-    <%= form_tag  artists_like_path do %>
-        <%= hidden_field_tag 'artist_id', @artist.id%>
-        <%= submit_tag "Like this Artist"%>
+    <div class="likes"><%= pluralize(@artist.user_likes_artists.count, "Like") %></div>
+    <% if @artist.user_likes_artists %>
+        <%= @artist.user_likes_artists.map { |l| l.user.username}.join(', ')  %>
     <% end %>
-<% end %>
 
-<!--buttons to edit; only the user's admin can -->
+    <!--description -->
 
-<%if current_user && current_user.artists.include?(@artist)%>
-    <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-    <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+    <p><%=@artist.description%></p>
 
-    <%=form_tag remove_users_path, method: 'get' do %>
-        <%=hidden_field_tag 'artist_id', @artist.id%>
-        <%=submit_tag "Delete Admin"%>
-    <%end%>
+    <!--buttons to like; any user can-->
+    <% if current_user %>
+        <%= form_tag  artists_like_path do %>
+            <%= hidden_field_tag 'artist_id', @artist.id%>
+            <%= submit_tag "Like this Artist"%>
+        <% end %>
+    <% end %>
 
-    <h5>What's on your mind?</h5>
-    <%=form_for @post do |f| %>
-        <%=f.hidden_field :artist_id, value: @artist.id%>
-        <%=f.label :content%>
-        <%=f.text_area  :content%>
-        <%=f.file_field :media%>
-        <%=f.submit "Create Post"%>
-    <%end%>
-<%end%>
+    <!--buttons to edit; only the user's admin can -->
 
+    <%if current_user && current_user.artists.include?(@artist)%>
+        <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
+        <%=button_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
 
-<!--genres-->
-
-<% if @artist.genres.count > 0 %>
-    <h2>Genres:</h2>
-    <p>
-        <%@artist.genres.each do |genre|%>
-            <%=link_to genre.name, genre_path(genre) %>
+        <%=form_tag remove_users_path, method: 'get' do %>
+            <%=hidden_field_tag 'artist_id', @artist.id%>
+            <%=submit_tag "Delete Admin"%>
         <%end%>
-    </p>
-<%end%>
+
+        <h5>What's on your mind?</h5>
+        <%=form_for @post do |f| %>
+            <%=f.hidden_field :artist_id, value: @artist.id%>
+            <%=f.label :content%>
+            <%=f.text_area  :content%>
+            <%=f.file_field :media%>
+            <%=f.submit "Create Post"%>
+        <%end%>
+    <%end%>
 
 
-<!--there are two different posts partials; this one (./posts/posts) is for more full posts, but ./posts/posts_tiles is for a short preview -->
-<% if @posts.count > 0 %>
-    <h2>Posts:</h2>
-    <%= render '/posts/posts' %>
-<%elsif %>
-    <p class="note">This artist has not made any posts yet.</p>
-<% end %>
+    <!--genres-->
+
+    <% if @artist.genres.count > 0 %>
+        <h2>Genres:</h2>
+        <p>
+            <%@artist.genres.each do |genre|%>
+                <%=link_to genre.name, genre_path(genre) %>
+            <%end%>
+        </p>
+    <%end%>
 
 
-<!--bookings as text blocks (not calendar) -->
-<% if @artist.bookings.count > 0 %>
-    <div class = "artist-bookings">
-        <h2>Upcoming Events:</h2>
-        <%= render './bookings/list_tiles' %>
-    </div>
-<%end%>
-
-
-<!-- endorsements -->
-<% if @artist.artist_likes.count %>
-    <h2>Endorsements:</h2>
-    <%= pluralize(@artist.artist_likes.count, "Endorsement") %><br>
-    <% @artist.artist_likes.each do |l|  %>
-        <div class="tile" >
-            <% if l.venue.image_url %>
-                <%= image_tag l.venue.image_url, class: "icon" %><br>
-            <% end %>
-            <%= link_to l.venue.name, l.venue %>
-        </div>
+    <!--there are two different posts partials; this one (./posts/posts) is for more full posts, but ./posts/posts_tiles is for a short preview -->
+    <% if @posts.count > 0 %>
+        <h2>Posts:</h2>
+        <%= render '/posts/posts' %>
+    <%elsif %>
+        <p class="note">This artist has not made any posts yet.</p>
     <% end %>
-<% end %>
+
+
+    <!--bookings as text blocks (not calendar) -->
+    <% if @artist.bookings.count > 0 %>
+        <div class = "artist-bookings">
+            <h2>Upcoming Events:</h2>
+            <%= render './bookings/list_tiles' %>
+        </div>
+    <%end%>
+
+
+    <!-- endorsements -->
+    <% if @artist.artist_likes.count %>
+        <h2>Endorsements:</h2>
+        <%= pluralize(@artist.artist_likes.count, "Endorsement") %><br>
+        <% @artist.artist_likes.each do |l|  %>
+            <div class="tile" >
+                <% if l.venue.image_url %>
+                    <%= image_tag l.venue.image_url, class: "icon" %><br>
+                <% end %>
+                <%= link_to l.venue.name, l.venue %>
+            </div>
+        <% end %>
+    <% end %>
 
 
 
-<!-- calendar -->
-<% if @bookings.count > 0%>
-    <h2> Shows with this Artist: </h2>
-    <%= render './bookings/calendar' %>
-<% elsif %>
-    <p class="note">This artist has not booked any shows yet.</p>
-<%end%>
+    <!-- calendar -->
+    <% if @bookings.count > 0%>
+        <h2> Shows with this Artist: </h2>
+        <%= render './bookings/calendar' %>
+    <% elsif %>
+        <p class="note">This artist has not booked any shows yet.</p>
+    <%end%>
 
 
-<!-- venues -->
-<% if @venues.count > 0 %> 
-    <h2> Places this Artist has booked:</h2>
-    <%= render './venues/list_tiles' %>
-<% else %>
-    <p class="note">This artist has not booked any shows yet.</p>
-<% end %>
+    <!-- venues -->
+    <% if @venues.count > 0 %> 
+        <h2> Places this Artist has booked:</h2>
+        <%= render './venues/list_tiles' %>
+    <% else %>
+        <p class="note">This artist has not booked any shows yet.</p>
+    <% end %>
+
+</div>

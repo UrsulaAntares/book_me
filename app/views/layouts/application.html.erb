@@ -10,24 +10,26 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   
-  <nav class="navbar">
+<nav class="navbar">
   <a class="navbar-brand" href="/artists">Artists</a>  
   <a class="navbar-brand" href="/venues">Venues</a>  
   <a class="navbar-brand" href="/bookings">Calendar</a> 
+  <a class="navbar-brand" href="/posts">News</a> 
+  <% if @venue && current_user.venues.include?(@venue) %>
+    <%= link_to "Edit this Venue", edit_venue_path(@venue), class: "navbar-brand admin" %>
+  <% end %>
+  <%if current_user && current_user.artists.include?(@artist)%>
+    <%=link_to "Edit Artist", edit_artist_path(@artist), method: 'get', class: "navbar-brand admin" %>
+    <%=link_to "Delete Artist", artist_path(@artist), method: 'delete', class: "navbar-brand admin" %>
+  <% end %>
+  <%if !current_user%>
+    <%=link_to "Login", login_path, class: "navbar-brand"%>
+  <%end%>
+  <%if current_user%>
+    <%=link_to "Dashboard", user_path(current_user), class: "navbar-brand"%>
+    <%=link_to "Logout", logout_path, method: 'destroy', class: "navbar-brand"%>
+  <%end%>
 </nav>
-
-<div>
-<%if !current_user%>
-<%=link_to "Login", login_path%>
-<%end%>
-
-<%if current_user%>
-<%=link_to "Logout", logout_path, method: 'destroy'%>
-<%=link_to "Dashboard", user_path(current_user)%>
-<%end%>
-</div>
-
-
 
 
   <body>

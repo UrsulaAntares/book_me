@@ -1,24 +1,25 @@
-<h1>New Artist Form</h1>
+<div class="content">
+    <h1 class="title">New Artist Form</h1>
 
-<%if @artist.errors.any?%>
-<ul>
-<%@artist.errors.full_messages.each do |msg| %>
-<li><%=msg%></li>
-<%end%>
-</ul>
-<%end%>
+    <%if @artist.errors.any?%>
+    <ul class="errors">
+        <%@artist.errors.full_messages.each do |msg| %>
+            <li><%=msg%></li>
+        <%end%>
+    </ul>
+    <%end%>
 
-<%=form_for @artist do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%><br>
-<%=f.file_field :avatar%>
-<%=f.label :description%>
-<%=f.text_field :description%><br>
-<%=f.label "Genre tags"%>
-<%=f.collection_check_boxes :genre_ids, Genre.all, :id, :name%><br>
-<%=f.fields_for :genres, @artist.genres.build do |g|%>
-<%=g.text_field :name%><br>
-<%end%>
-<%=f.submit "Create Artist"%>
-<%end%>
-
+    <%=form_for @artist do |f|%>
+        <%=f.label :name%>
+        <%=f.text_field :name%><br>
+        <%=f.file_field :avatar%>
+        <%=f.label :description%>
+        <%=f.text_field :description%><br>
+        <%=f.label "Genre tags"%>
+        <%=f.collection_check_boxes :genre_ids, Genre.all, :id, :name%><br>
+        <%=f.fields_for :genres, @artist.genres.build do |g|%>
+            <%=g.text_field :name%><br>
+        <%end%>
+        <%=f.submit "Create Artist"%>
+    <%end%>
+</div>
