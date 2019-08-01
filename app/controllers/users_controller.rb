@@ -22,13 +22,13 @@ class UsersController < ApplicationController
             redirect_to user_path(current_user)
         end
         @artists = current_user.artists 
-        # current_user.artists
+        @venues = @user.venues
     end
 
     def index
         @users = User.all
     end
-    
+
     private
 
     def user_params

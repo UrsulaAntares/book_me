@@ -1,5 +1,5 @@
 input {    
-    background: #d4d4d454;
+    background: #7878b53d;
     border: 0px;
     color: #FFF;
 }
@@ -7,6 +7,15 @@ input {
 button, .button_to input {
     color: #ececec;
     margin: 3px 5px;
-    border-radius: 15px;
+    border-radius: 27px;
     border: 1px solid #606063;
+    padding: 4px 17px;
+}
+
+form.button_to {    display: inline-block;}
+
+div.controls {
+    float: right;
+    position: relative;
+    top: -27px;
 }
