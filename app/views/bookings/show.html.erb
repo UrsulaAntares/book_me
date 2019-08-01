@@ -1,28 +1,27 @@
-<div class="content">
-    <h1 class="title"> <%= @booking.title %> </h1>
-    <p class="date"> <%= @booking.date_format(@booking.start_date) %> </p>
-    <p class="time"> <%= @booking.time_format(@booking.start_date) %> - <%= @booking.time_format(@booking.end_time) %> </p>
-    <h3 class="venuename"> <%= link_to @booking.venue.name, @booking.venue %> | <%= @booking.venue.location %> </h3>
-    <div>
-        <% if @booking.image_url %>
-            <%=image_tag @booking.image_url %>
-        <% end %>
-    </div>
-
-    <p class="description"> <%= @booking.description %></p>
-
-    <div class="tile">
-        <%if @booking.artist.image_url%>
-            <%= image_tag @booking.artist.image_url, class: 'headshot' %>
-        <%end%>
-
-        <%if @booking.artist.avatar.attached?%>
-            <%= image_tag @booking.artist.avatar, class: 'headshot' %>
-        <%end%>
-        <br>
-        <%= link_to @booking.artist.name, @booking.artist %> 
-    </div>
+<h1 class="title"> <%= @booking.title %> </h1>
+<p class="date"> <%= @booking.date_format(@booking.start_date) %> </p>
+<p class="time"> <%= @booking.time_format(@booking.start_date) %> - <%= @booking.time_format(@booking.end_time) %> </p>
+<h3 class="venuename"> <%= link_to @booking.venue.name, @booking.venue %> | <%= @booking.venue.location %> </h3>
+<div>
+    <% if @booking.image_url %>
+        <%=image_tag @booking.image_url %>
+    <% end %>
 </div>
+
+<p class="description"> <%= @booking.description %></p>
+
+<div class="tile">
+    <%if @booking.artist.image_url%>
+        <%= image_tag @booking.artist.image_url, class: 'headshot' %>
+    <%end%>
+
+    <%if @booking.artist.avatar.attached?%>
+        <%= image_tag @booking.artist.avatar, class: 'headshot' %>
+    <%end%>
+    <br>
+    <%= link_to @booking.artist.name, @booking.artist %> 
+</div>
+
   
 
 
