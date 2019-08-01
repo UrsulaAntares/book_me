@@ -14,5 +14,15 @@ class Artist < ApplicationRecord
     has_many :user_likes_artists
     # has_many :users, through: :user_likes_artists #remains to be seen if this messes with other artist.users
     
+    def artist_avatar
+        if self.avatar.attached?
+            image_tag artist.avatar
+        else
+            image_tag 'default_avatar.jpg'
+        end
+    end
+
+
+   
 
 end

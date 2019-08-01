@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :user_venues
   resources :user_artists
+  get '/remove_users', to: 'user_artists#remove'
+  get '/remove_venues', to: 'user_venues#remove'
   resources :users
   resources :artist_genres
   resources :artist_likes

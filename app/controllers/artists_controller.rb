@@ -75,7 +75,6 @@ class ArtistsController < ApplicationController
 
     def destroy
         artist = Artist.find_by(id: params[:id])
-        user = artist.user
         artist.destroy
         if user
             redirect_to user_path(user) 

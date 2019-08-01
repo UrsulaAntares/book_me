@@ -16,9 +16,29 @@ class UserArtistsController < ApplicationController
             redirect_to user_path(current_user)
     end
 
+    def remove
+    @artist = Artist.find_by(remove_params[:artist_id])
+    end
+
+    def destroy
+       # byebug
+        user = User.find_by(username: params[:user_id])
+       relation = UserArtist.find_by(user_id: user.id, artist_id: destroy_params[:id])
+        relation.destroy
+        redirect_to user_path(current_user)
+    end
+
     private
 
     def user_artist_params
         params.require(:user_artist).permit(:user_id, artist_id: [])
+    end
+
+    def remove_params
+       params.permit(:artist_id)
+    end
+
+    def destroy_params
+        params.permit(:user, :id)
     end
 end

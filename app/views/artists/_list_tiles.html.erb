@@ -6,6 +6,8 @@
                     <%= image_tag artist.image_url, class: "headshot" %>
                 <%elsif artist.avatar.attached?%>
                     <%=image_tag artist.avatar, class: "headshot" %>
+                <%else %>
+                <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
                 <%end%>
                 <p><%= artist.name %></p>
                 <p><%= pluralize(artist.artist_likes.count, "Endorsement") %></p>

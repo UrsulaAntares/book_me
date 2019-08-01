@@ -1,0 +1,11 @@
+<h1>Delete Admin for <%=@venue.name%></h1>
+
+<%=form_tag user_venue_path(@venue.id), method: 'delete' do %>
+<input type="text" name="user_id" list="users">
+<datalist id='users'>
+<%current_user.venue_admin(@venue).each do |user|%>
+    <option value = '<%=user.username%>'>
+    <%end%>
+    </datalist>
+<%=submit_tag "Remove this admin"%>
+<%end%>
