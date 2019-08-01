@@ -6,42 +6,36 @@ class ArtistsController < ApplicationController
     end
 
     def search
-        #byebug
         @artists = []
         if search_params[:g] != ""
-        genre = Genre.find_by(name: search_params[:g])
-        #byebug
-        @artists = genre.artists
-        if @artists == []
-            @artists = Artist.all
-            @message = "There are no artists by that genre."
+            genre = Genre.find_by(name: search_params[:g])
+            @artists = genre.artists
+            if @artists == []
+                @artists = Artist.all
+                @message = "There are no artists by that genre."
+            end
         end
-    end
-        #byebug
         if search_params[:q] != ""
-        artist = Artist.find_by(name: search_params[:q])
-        #byebug
-        if !artist.nil? 
-        # if !@artists.include?(artist)
-            @artists << artist
-        # end
-        # byebug
-    end
+            artist = Artist.find_by(name: search_params[:q])
+            if !artist.nil? 
+            # if !@artists.include?(artist)
+                @artists << artist
+            # end
+            end
             @artists.uniq
-    end
-    #byebug
-    if @artists.nil? || @artists.empty?
-        @artists = Artist.all
-        @message = "No artists by that search."
-    end
+        end
+        if @artists.nil? || @artists.empty?
+            @artists = Artist.all
+            @message = "No artists by that search."
+        end
         render :index
-        
     end
 
     def show 
         @bookings = @artist.bookings
         @post = Post.new
         @venues = @artist.venues
+        @posts = @artist.posts
     end
 
     def new
@@ -49,8 +43,13 @@ class ArtistsController < ApplicationController
         @artist.genres.build()
     end
 
+    def like
+        @artist = Artist.find(like_params[:artist_id])
+        UserLikesArtist.create(user_id: current_user.id, artist_id: @artist.id)
+        redirect_to artist_path(@artist)
+    end
+
     def create
-        #byebug
         @artist = Artist.new(artist_params)
         if @artist.save
             @artist.save
@@ -75,18 +74,18 @@ class ArtistsController < ApplicationController
     end
 
     def destroy
-        #byebug
         artist = Artist.find_by(id: params[:id])
         user = artist.user
         artist.destroy
         if user
-            redirect_to user_path(user) #problem happens when a user wants to delete an artist that they do not own (since the option is currently exposed to them)
+            redirect_to user_path(user) 
         else
             redirect_to artists_path
         end
     end
 
-   
+    def posts
+    end
 
     private
 
@@ -97,6 +96,10 @@ class ArtistsController < ApplicationController
     def artist_params
         params.require(:artist).permit(:name, :description, :image_url, :avatar, genre_ids: [], genres_attributes: [:name])
     end
+
+    def  like_params
+        params.permit(:artist_id)
+    end    
 
     def require_login
         return head(:forbidden) unless session.include? :user_id

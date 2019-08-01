@@ -1,0 +1,21 @@
+<div class = "artist-posts">
+    <% if @posts %>
+        <% @posts.each do |post|%>
+        <div class="post">
+            <p><%=post.content%></p>
+            <%if post.media.attached?%>
+                <%if post.image?%>
+                <!-- begin differenec -->
+                <%=image_tag post.media%>
+                <% elsif post.video?%>
+                <video src='<%=rails_blob_path(post.media)%>' type="video/mp4" controls>
+                </video>
+                <%end%>
+            <%end%>
+        <%if current_user && current_user.artists.include?(@artist)%>
+            <%=link_to "delete", post_path(post), method: 'delete', data: {confirm: "are you sure?"} %>
+            <%end%>
+         </div>
+        <%end%>
+    <%end %>
+</div>

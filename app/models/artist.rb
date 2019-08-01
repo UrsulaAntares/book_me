@@ -11,6 +11,8 @@ class Artist < ApplicationRecord
     validates :name, presence: true
     has_many :user_artists
     has_many :users, through: :user_artists
+    has_many :user_likes_artists
+    # has_many :users, through: :user_likes_artists #remains to be seen if this messes with other artist.users
     
 
 end
