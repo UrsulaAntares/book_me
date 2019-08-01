@@ -2,6 +2,14 @@
     <% if @posts %>
         <% @posts.each do |post|%>
         <div class="tile post">
+            <a href="<%=artist_path(post.artist)%>">
+                <% if post.artist.avatar.attached? %>
+                    <%= image_tag post.artist.avatar, class: "icon" %>  
+                <% elsif post.artist.image_url %> 
+                    <%= image_tag post.artist.image_url, class: "icon" %>
+                <% end %>
+                <%= post.artist.name %>
+            </a>
             <p><%=post.content%></p>
             <%if post.media.attached?%>
                 <%if post.media.blob.content_type.include?("image" || "jpeg")%>
