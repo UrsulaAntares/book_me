@@ -109,7 +109,7 @@
 
 
 <!-- venues -->
-<% if @artist.bookings.venues.count > 0 %> 
+<% if @venues.count > 0 %> 
     <h2> Places this Artist has booked:</h2>
     <%= render './venues/list_tiles' %>
 <% else %>

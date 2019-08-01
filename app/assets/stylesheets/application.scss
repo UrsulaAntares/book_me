@@ -19,7 +19,6 @@
 img, video {max-width:100%}
 
 
-
 img.headshot {
     border-radius: 50%;
     object-fit: cover;
@@ -80,3 +79,20 @@ ul {
 .mine {background: #38c2d41f}
 
 .played {background: #83d4381f}
+
+#center {text-align: center;
+    margin: 170px;
+    font-size: 3.0rem;
+    color: white;
+}
+// 
+body {background-image: url("background-1939128_1280.jpg")}
+
+div.login-header {margin: 150px;
+    text-align: center;
+}
+
+.login {text-align: right;
+    margin: 0 auto;
+    width: 285px;
+}

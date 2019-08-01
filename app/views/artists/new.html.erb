@@ -8,17 +8,24 @@
 </ul>
 <%end%>
 
-<%=form_for @artist do |f|%>
+
+
+<%=form_for @artist, class:'form-inline' do |f|%>
+<div class="form-group">
 <%=f.label :name%>
 <%=f.text_field :name%><br>
 <%=f.file_field :avatar%>
 <%=f.label :description%>
 <%=f.text_field :description%><br>
 <%=f.label "Genre tags"%>
+<div class="form-check">
 <%=f.collection_check_boxes :genre_ids, Genre.all, :id, :name%><br>
+</div>
+<%=f.label "or, input your own genre"%>
 <%=f.fields_for :genres, @artist.genres.build do |g|%>
 <%=g.text_field :name%><br>
 <%end%>
 <%=f.submit "Create Artist"%>
+</div>
 <%end%>
 
