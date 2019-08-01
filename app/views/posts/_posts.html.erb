@@ -5,11 +5,10 @@
             <p><%=post.content%></p>
             <%if post.media.attached?%>
                 <%if post.image?%>
-                <!-- begin differenec -->
                 <%=image_tag post.media%>
                 <% elsif post.video?%>
-                <video src='<%=rails_blob_path(post.media)%>' type="video/mp4" controls>
-                </video>
+                    <video src='<%=rails_blob_path(post.media)%>' type="video/mp4" controls>
+                    </video>
                 <%end%>
             <%end%>
         <%if current_user && current_user.artists.include?(@artist)%>

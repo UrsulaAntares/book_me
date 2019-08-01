@@ -34,7 +34,8 @@ class ArtistsController < ApplicationController
     def show 
         @bookings = @artist.bookings
         @post = Post.new
-        @venues = @artist.venues
+        # @venues = @artist.venues #@artist.venues refers to endorsements 
+        @venues = @bookings.map {|b| b.venue }
         @posts = @artist.posts
     end
 

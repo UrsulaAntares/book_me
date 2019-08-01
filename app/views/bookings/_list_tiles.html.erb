@@ -4,6 +4,7 @@
                 <%=  image_tag booking.image_url, class: 'icon'  %>
             <% end %>
             <p><%=link_to booking.title, booking_path(booking)%></p>
+            <p><%=link_to booking.venue.name, venue_path(booking.venue)%>
             <p><%=booking.artist.name%></p>
             <p><%=booking.date_format(booking.start_date)%></p>
             <p><%=booking.time%></p>
