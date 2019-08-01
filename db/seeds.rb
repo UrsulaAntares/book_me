@@ -7,7 +7,8 @@ require 'date'
 
 lovemusic = User.create(username: 'lovemusic', password: "password")
 mlam = User.create(username: 'mlam', password: 'password')
-
+cooluser = User.create(username: "cooluser", password: 'password')
+joe123 = User.create(username: 'joe123', password: 'password')
 
 pop = Genre.create(name: "Pop")
 rap = Genre.create(name: "Rap")
@@ -27,6 +28,7 @@ b = Artist.create(name:'Sam Cooke', description: '', image_url:'https://e-cdns-i
 
 lizzo.genres << pop
 db.genres << ind
+a.genres << folk << ind << pop
 # c = Artist.create(name:'', description: '', image_url:'' ) 
 # d = Artist.create(name:'', description: '', image_url:'' ) 
 # e = Artist.create(name:'', description: '', image_url:'' ) 
@@ -52,8 +54,10 @@ db.genres << ind
 # y = Artist.create(name:'', description: '', image_url:'' ) 
 # z = Artist.create(name:'', description: '', image_url:'' ) 
 
-mlam.artists << lizzo
-lovemusic.artists << db
+mlam.artists << lizzo << a
+lovemusic.artists << db << lizzo
+cooluser << b
+
 
 ninethirty= Venue.create(name: '9:30 Club', location: 'U Street', description: 'perfect', category: 'club', capacity: 400)
 rnr = Venue.create(name: 'Rock & Roll Hotel', location: 'Atlas District', description: 'Divey', category: 'club', capacity: 100)
@@ -65,8 +69,13 @@ dc9 = Venue.create(name: 'DC9', location: 'U Street', description: 'Divey', cate
 bohem = Venue.create(name: 'Bohemian Caverns', location: 'U Street', description: 'Dinner theater style', category: 'dinner theater', capacity: 200)
 hamilton = Venue.create(name: 'Hamilton', location: 'Downtown', description: 'Dinner and bar areas', category: 'dinner theater', capacity: 300)
 
-mlam.venues << anthem
-lovemusic.venues << dc9
+mlam.venues << anthem << uhaul
+# mlam.venues << uhaul
+lovemusic.venues << dc9 << blackcat
+# lovemusic.venues << blackcat
+cooluser << songbird << hamilton 
+joe123 << bohem << rnr
+
 
 
 Booking.create(title: 'American Tour in DC', artist: lizzo, venue: ninethirty, start_date: DateTime.new(2019, 9, 10, 19, 30), 
