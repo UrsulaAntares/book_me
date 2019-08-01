@@ -1,15 +1,17 @@
-<h1> Genres </h1>
+<div class="content">
+    <h1 class="title"> Genres </h1>
 
-<% @genres.each do |g| %>
-    <div class="tile">
-        <%= link_to g.name, genre_path(g) %><br>
-        <% g.artists.each do |ga| %>
-            <%= ga.name %><br>
-            <% if ga.avatar.attached? %>
-                <%= image_tag ga.avatar, class: "icon" %>
-            <% elsif ga.image_url %>
-                <%= image_tag ga.image_url, class: "icon" %>
-            <% end %>    
-        <% end %>
-    </div>
-<% end %>
+    <% @genres.each do |g| %>
+        <div class="tile">
+            <p class="genrename"><%= link_to g.name, genre_path(g) %></p>
+            <% g.artists.each do |ga| %>
+                <%= ga.name %><br>
+                <% if ga.avatar.attached? %>
+                    <%= image_tag ga.avatar, class: "icon" %>
+                <% elsif ga.image_url %>
+                    <%= image_tag ga.image_url, class: "icon" %>
+                <% end %>    
+            <% end %>
+        </div>
+    <% end %>
+</div>
