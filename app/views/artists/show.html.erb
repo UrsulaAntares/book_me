@@ -3,7 +3,12 @@
 <%if current_user && current_user.artists.include?(@artist)%>
 <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
 <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
-<%=link_to "Add Admin", new_user_artist_path%>
+
+<%=form_tag remove_users_path, method: 'get' do %>
+<%=hidden_field_tag 'artist_id', @artist.id%>
+<%=submit_tag "Delete Admin"%>
+<%end%>
+
 <h5>What's on your mind?</h5>
 <%=form_for @post do |f| %>
 <%=f.hidden_field :artist_id, value: @artist.id%>
@@ -16,10 +21,10 @@
 
 <% if @artist.image_url%>
     <%=image_tag @artist.image_url, class: "icon"%>
-<%end%>
-
-<%if @artist.avatar.attached?%>
+<%elsif @artist.avatar.attached?%>
     <%=image_tag @artist.avatar, class: "headshot"%>
+    <%else%>
+    <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
 <%end%>
 
 

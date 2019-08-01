@@ -5,6 +5,9 @@ require 'date'
 # Booking.destroy_all
 # Venue.destroy_all
 
+lovemusic = User.create(username: 'lovemusic', password: "password")
+mlam = User.create(username: 'mlam', password: 'password')
+
 
 pop = Genre.create(name: "Pop")
 rap = Genre.create(name: "Rap")
@@ -21,6 +24,9 @@ lizzo = Artist.create(name: 'Lizzo', description: 'bad ass musician', image_url:
 db = Artist.create(name: 'Dave Berman', description: 'twangy emo', image_url: 'https://static.spin.com/files/2019/05/Screen-Shot-2019-05-10-at-10.41.52-AM-1557499348-640x339.png')
 a = Artist.create(name:'Lucius', description: 'Alien folk-pop', image_url:'https://image-ticketfly.imgix.net/00/02/83/92/04-og.jpg' ) 
 b = Artist.create(name:'Sam Cooke', description: '', image_url:'https://e-cdns-images.dzcdn.net/images/artist/da87d69a29ce6860f09f7070c060a139/500x500.jpg' ) 
+
+lizzo.genres << pop
+db.genres << ind
 # c = Artist.create(name:'', description: '', image_url:'' ) 
 # d = Artist.create(name:'', description: '', image_url:'' ) 
 # e = Artist.create(name:'', description: '', image_url:'' ) 
@@ -46,6 +52,8 @@ b = Artist.create(name:'Sam Cooke', description: '', image_url:'https://e-cdns-i
 # y = Artist.create(name:'', description: '', image_url:'' ) 
 # z = Artist.create(name:'', description: '', image_url:'' ) 
 
+mlam.artists << lizzo
+lovemusic.artists << db
 
 ninethirty= Venue.create(name: '9:30 Club', location: 'U Street', description: 'perfect', category: 'club', capacity: 400)
 rnr = Venue.create(name: 'Rock & Roll Hotel', location: 'Atlas District', description: 'Divey', category: 'club', capacity: 100)
@@ -57,7 +65,8 @@ dc9 = Venue.create(name: 'DC9', location: 'U Street', description: 'Divey', cate
 bohem = Venue.create(name: 'Bohemian Caverns', location: 'U Street', description: 'Dinner theater style', category: 'dinner theater', capacity: 200)
 hamilton = Venue.create(name: 'Hamilton', location: 'Downtown', description: 'Dinner and bar areas', category: 'dinner theater', capacity: 300)
 
-
+mlam.venues << anthem
+lovemusic.venues << dc9
 
 
 Booking.create(title: 'American Tour in DC', artist: lizzo, venue: ninethirty, start_date: DateTime.new(2019, 9, 10, 19, 30), 

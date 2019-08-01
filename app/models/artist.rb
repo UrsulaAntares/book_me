@@ -12,5 +12,15 @@ class Artist < ApplicationRecord
     has_many :user_artists
     has_many :users, through: :user_artists
     
+    def artist_avatar
+        if self.avatar.attached?
+            image_tag artist.avatar
+        else
+            image_tag 'default_avatar.jpg'
+        end
+    end
+
+
+   
 
 end

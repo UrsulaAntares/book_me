@@ -13,4 +13,14 @@ class User < ApplicationRecord
             user != self
         end
     end
+
+    def artist_admin(artist)
+        artist.users.select {|u| u != self}
+    end
+
+    def venue_admin(venue)
+        venue.users.select {|u| u != self}
+    end
+
+    
 end

@@ -18,10 +18,10 @@ class UsersController < ApplicationController
 
     def show #use current_user
         @user = User.find_by(id: params[:id])
-        if @user.id != current_user.id
+        if @user.nil? || @user.id != current_user.id 
             redirect_to user_path(current_user)
         end
-        @artists = @user.artists 
+        @artists = current_user.artists 
         # current_user.artists
     end
 
