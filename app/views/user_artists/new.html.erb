@@ -1,6 +1,8 @@
 <h1>Select which user to give admin access to your Artists</h1>
 
- 
+ <% if @message%>
+ <p><%=@message%></p>
+ <%end%>
 
 <%=form_for @user_artist do |f|%>
 <%=f.label "Select User by Username"%>

@@ -1,4 +1,5 @@
 .simple-calendar {
+  margin: 0 100px;
     table {
       -webkit-border-horizontal-spacing: 0px;
       -webkit-border-vertical-spacing: 0px;
@@ -47,7 +48,7 @@
     }
   
     .day {
-      height: 80px;
+      height: 200px;
       color: gray
     }
   
@@ -60,7 +61,7 @@
     .wday-6 {}
   
     .today {
-      background: #FFFFC0
+      background: rgb(21, 46, 34)
     }
   
     .past {}
@@ -72,7 +73,7 @@
       background: rgb(58, 50, 50);
     }
     .next-month {
-      background: #DDD;
+      background: rgb(58, 50, 50)
     }
     .current-month {}
   
