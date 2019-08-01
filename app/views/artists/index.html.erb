@@ -1,5 +1,6 @@
 <h1 class="title">Artists</h1>
 
+<div class="search">
 <%=form_tag "/search", method: "get" do %>
     <%=label_tag(:q, "Artist Name:")%>
     <%=text_field_tag(:q)%>
@@ -12,6 +13,7 @@
     </datalist></input>
     <%=submit_tag("Search")%>
     <%end%>
+</div>
 
 <%if @message%>
     <p><%=@message%></p>

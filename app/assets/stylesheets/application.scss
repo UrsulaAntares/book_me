@@ -16,6 +16,8 @@
 //  *= require simple_calendar
 // @import simple_calendar
 
+
+
 img, video {max-width:100%}
 
 
@@ -38,6 +40,9 @@ ul {
 
 }
 
+nav a {color: white;
+    padding: 30px}
+
 .thumb_display li {
     display: inline-block;
     max-width: 25%;
@@ -49,13 +54,38 @@ ul {
 
 .tile {
     display: inline-block;
-    padding: 5px 20px;
+    padding: 20px 20px;
     text-align: center;
     max-width: 300px;
     vertical-align: top;
     max-height: 450px;
     overflow-y: scroll;
     // border: solid 1px #efefef;
+}
+
+.tile a.calendar-link{color: white;
+    text-decoration: underline}
+
+.tile a p.venue-location {color: white}
+
+.tile a {
+    font-size: 13px
+}
+
+
+.tile a p {
+    color: gray;
+    margin-bottom: 0rem
+}
+
+.tile a p.artist-name {
+    font-size: 15px;
+    color: white
+}
+
+.tile a.genre-links {
+    color: gray; 
+    text-decoration: underline;  
 }
 
 .post {
@@ -86,7 +116,19 @@ ul {
     color: white;
 }
 // 
-body {background-image: url("background-1939128_1280.jpg")}
+
+    a {color: whitesmoke}
+h1 {padding: 0 0 0 30px}
+
+h1 a{color: lightblue}
+
+div.content {
+   
+}
+body {background-color: black;
+}
+
+// background-image: url("background-1939128_1280.jpg")
 
 div.login-header {margin: 150px;
     text-align: center;

@@ -6,7 +6,7 @@
       <%= booking.title %>
       <br>
      
-      <a class="tile" href="<%=artist_path(booking.artist)%>">
+      <a class="tile calendar-link" href="<%=artist_path(booking.artist)%>">
         <% if booking.artist.avatar.attached? %>
           <%=image_tag booking.artist.avatar, class: 'icon' %>
           <%end%>

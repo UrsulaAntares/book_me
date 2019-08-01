@@ -9,11 +9,11 @@
                 <%else %>
                 <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
                 <%end%>
-                <p><%= artist.name %></p>
+                <p class='artist-name'><%= artist.name %></p>
                 <p><%= pluralize(artist.artist_likes.count, "Endorsement") %></p>
             </a>
             <% artist.genres.each do |g| %>
-                <%= link_to g.name, genre_path(g) %> 
+                <%= link_to g.name, genre_path(g), class: 'genre-links' %> 
             <% end %>
             <% if @venue && current_user.venues.include?(@venue) %> 
                 <div>
