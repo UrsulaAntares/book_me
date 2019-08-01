@@ -16,6 +16,12 @@ class ArtistsController < ApplicationController
         @artist.genres.build()
     end
 
+    def like
+        @artist = Artist.find(like_params[:artist_id])
+        UserLikesArtist.create(user_id: current_user.id, artist_id: @artist.id)
+        redirect_to artist_path(@artist)
+    end
+
     def create
         #byebug
         @artist = Artist.new(artist_params)
@@ -62,6 +68,10 @@ class ArtistsController < ApplicationController
     def artist_params
         params.require(:artist).permit(:name, :description, :image_url, :avatar, genre_ids: [], genres_attributes: [:name])
     end
+
+    def  like_params
+        params.permit(:artist_id)
+    end    
 
     def require_login
         return head(:forbidden) unless session.include? :user_id

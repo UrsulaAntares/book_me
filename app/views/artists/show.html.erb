@@ -1,17 +1,26 @@
 <h1><%=@artist.name%></h1>
 
+<% if current_user %>
+    <%= form_tag  artists_like_path do %>
+        <%= hidden_field_tag 'artist_id', @artist.id%>
+        <%= submit_tag "Like this Artist"%>
+    <% end %>
+
+<% end %>
+
+
 <%if current_user.artists.include?(@artist)%>
-<%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-<%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
-<%=link_to "Add Admin", new_user_artist_path%>
-<h5>What's on your mind?</h5>
-<%=form_for @post do |f| %>
-<%=f.hidden_field :artist_id, value: @artist.id%>
-<%=f.label :content%>
-<%=f.text_area  :content%>
-<%=f.file_field :media%>
-<%=f.submit "Create Post"%>
-<%end%>
+    <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
+    <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+    <%=link_to "Add Admin", new_user_artist_path%>
+    <h5>What's on your mind?</h5>
+    <%=form_for @post do |f| %>
+        <%=f.hidden_field :artist_id, value: @artist.id%>
+        <%=f.label :content%>
+        <%=f.text_area  :content%>
+        <%=f.file_field :media%>
+        <%=f.submit "Create Post"%>
+    <%end%>
 <%end%>
 
 <% if @artist.image_url%>

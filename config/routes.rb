@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get '/home', to: 'static#home'
   post '/venues/endorse', to: 'venues#endorse'
   post '/venues/unendorse', to: 'venues#unendorse'
+  post '/artists/like', to: 'artists#like'
+  get '/artists/like', to: 'artists#like'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
