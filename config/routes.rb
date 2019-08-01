@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   post '/venues/unendorse', to: 'venues#unendorse'
   post '/artists/like', to: 'artists#like'
   get '/artists/like', to: 'artists#like'
+  # get '/artists/posts', to: 'artists#posts'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

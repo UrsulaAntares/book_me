@@ -9,6 +9,7 @@ class ArtistsController < ApplicationController
         @bookings = @artist.bookings
         @post = Post.new
         @venues = @artist.venues
+        @posts = @artist.posts
     end
 
     def new
@@ -57,6 +58,9 @@ class ArtistsController < ApplicationController
         else
             redirect_to artists_path
         end
+    end
+
+    def posts
     end
 
     private

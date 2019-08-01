@@ -51,7 +51,18 @@ ul {
     padding: 5px 20px;
     text-align: center;
     max-width: 300px;
+    vertical-align: top;
+    max-height: 450px;
+    overflow-y: scroll;
     // border: solid 1px #efefef;
+}
+
+.post.tile{
+    text-align: left;
+}
+
+.tile video, .tile img {
+    max-width:100%
 }
 
 .mine {background: #38c2d41f}
