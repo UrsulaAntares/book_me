@@ -46,10 +46,8 @@
 <% end %>
 
 <% if current_user.venues.include?(@venue) %>
-    <div>
-    <%= link_to "Edit this Venue", edit_venue_path(@venue) %> <br><br>
     <div> Book an Artist
-    <%= render './bookings/form' %></div>
+    <%= render './bookings/form' %>
     </div>
 <% end %>
 

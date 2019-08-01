@@ -1,11 +1,11 @@
-<h1><%=@artist.name%></h1>
+<h1 class="title"><%=@artist.name%></h1>
 
 <!--Headshot -->
 <% if @artist.image_url%>
     <%=image_tag @artist.image_url, class: "headshot"%>
 <% elsif @artist.avatar.attached?%>
     <%=image_tag @artist.avatar, class: "headshot"%>
- <%else%>
+<%else%>
     <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
 <%end%>
 
@@ -35,7 +35,7 @@
 
 <%if current_user && current_user.artists.include?(@artist)%>
     <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-    <%=link_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
+    <%=button_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
 
     <%=form_tag remove_users_path, method: 'get' do %>
         <%=hidden_field_tag 'artist_id', @artist.id%>

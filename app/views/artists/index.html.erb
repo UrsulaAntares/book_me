@@ -1,4 +1,4 @@
-<h1>Artists</h1>
+<h1 class="title">Artists</h1>
 
 <%=form_tag "/search", method: "get" do %>
     <%=label_tag(:q, "Artist Name:")%>
@@ -14,11 +14,10 @@
     <%end%>
 
 <%if @message%>
-<p><%=@message%></p>
+    <p><%=@message%></p>
 <%end%>
 
 <%= render 'list_tiles' %>
-<!--#filter by genre?-->
 
 
 

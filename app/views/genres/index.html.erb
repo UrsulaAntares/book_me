@@ -1,8 +1,8 @@
-<h1> Genres </h1>
+<h1 class="title"> Genres </h1>
 
 <% @genres.each do |g| %>
     <div class="tile">
-        <%= link_to g.name, genre_path(g) %><br>
+        <p class="genrename"><%= link_to g.name, genre_path(g) %></p>
         <% g.artists.each do |ga| %>
             <%= ga.name %><br>
             <% if ga.avatar.attached? %>
