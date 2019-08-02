@@ -1,45 +1,61 @@
 <% if @artists %>        
     <%@artists.each do |artist|%>
-        <div class="tile">
-            <a href="<%=artist_path(artist)%>">
-                <%if artist.image_url%>
-                    <%= image_tag artist.image_url, class: "headshot" %>
-                <%elsif artist.avatar.attached?%>
-                    <%=image_tag artist.avatar, class: "headshot" %>
-                <%else %>
-                <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
-                <%end%>
-                <p class='artist-name'><%= artist.name %></p>
-                <p><%= pluralize(artist.artist_likes.count, "Endorsement") %></p>
-            </a>
+        <div class="tile <%= artist.users.include?(current_user) ? 'mine' : '' %> ">
+            <div>
+                <a href="<%=artist_path(artist)%>">
+                    <%if artist.image_url%>
+                        <%= image_tag artist.image_url, class: "headshot" %>
+                    <%elsif artist.avatar.attached?%>
+                        <%=image_tag artist.avatar, class: "headshot" %>
+                    <%else %>
+                        <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
+                    <%end%>
+                </a>
+                <% if current_user %>
+                    <%= form_tag  artists_like_path do %>
+                        <%= hidden_field_tag 'artist_id', artist.id%>
+                        <%= hidden_field_tag 'locus', 'artists'%>
+                        <input type="submit" value="♥" class="like_button <%= artist.likers.include?(current_user) ? 'active' : ''%>">
+                    <% end %>
+                <% end %>
+            </div>
+                <p class='artist-name'><%= link_to artist.name, artist_path(artist) %>
+                </p>
+                <p>♥ <%= pluralize(artist.user_likes_artists.count, "Likes") %></p>
+                <p>★ <%= pluralize(artist.artist_likes.count, " Endorsement") %></p>
             <% artist.genres.each do |g| %>
                 <%= link_to g.name, genre_path(g), class: 'genre-links' %> 
             <% end %>
-            <% if current_user && @venue && current_user.venues.include?(@venue) %> 
-                <div>
-                <% if  @venue.artist_likes.select {|l| l.artist == artist}.count >= 1 %>
-                    <%= form_for(@venue, url: {controller: 'venues', action: 'unendorse'}, method: :post) do |f| %>
-                    <%= f.hidden_field :venue_id, :value => @venue.id%>
-                    <%= f.hidden_field :artist_name, :value => artist.name%>
-                    <%= f.submit "Un-Endorse" %>     
-                <% end %>
-                <% else %>
-                    <%= form_for(@venue, url: {controller: 'venues', action: 'endorse'}, method: :post) do |f| %>
-                    <%= f.hidden_field :venue_id, :value => @venue.id%>
-                    <%= f.hidden_field :artist_name, :value => artist.name%>
-                    <%= f.submit "Endorse" %>     
-                    <% end %>
-                <% end %>
-                <!--end endorsement buttons -->
-                <!--begin booking buttons -->
+            <div class="tile-options">
+            <!-- begin booking -->
+                <% if current_user && (current_user.venues.count > 0) %>   
                     <%= form_for(@booking, url: {controller: 'bookings', action: 'create'}, method: :post) do |f| %>
-                    <%= f.hidden_field :venue_name, :value => @venue.name%>
-                    <%= f.hidden_field :artist_name, :value => artist.name%>
-                    <%= f.submit "Book this Artist" %>     
-                    <% end %>
-                <!--end booking buttons -->
-                </div>
-            <% end %>
+                            <% if !@venue %>
+                                <%= f.hidden_field :venue_name, :value => current_user.venues.last.name%>
+                            <% else %> 
+                                <%= f.hidden_field :venue_name, :value => @venue.name%>
+                            <% end %>   
+                            <%= f.hidden_field :artist_name, :value => artist.name%>
+                            <%= f.submit "Book" %>     
+                        <% end %>
+                <% end %>
+                <!-- end booking -->
+                <% if current_user && @venue && current_user.venues.include?(@venue) %> 
+                    <% if  @venue.artist_likes.select {|l| l.artist == artist}.count >= 1 %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'unendorse'}, method: :post) do |f| %>
+                            <%= f.hidden_field :venue_id, :value => @venue.id%>
+                            <%= f.hidden_field :artist_name, :value => artist.name%>
+                            <%= f.submit "Un-Endorse" %>     
+                        <% end %>
+                    <% else %>
+                        <%= form_for(@venue, url: {controller: 'venues', action: 'endorse'}, method: :post) do |f| %>
+                            <%= f.hidden_field :venue_id, :value => @venue.id%>
+                            <%= f.hidden_field :artist_name, :value => artist.name%>
+                            <%= f.submit "Endorse" %>     
+                        <% end %>
+                    <% end %>    
+                <% end %>
+            </div>
         </div>
     <%end%>
 <% end %>

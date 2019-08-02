@@ -23,6 +23,7 @@ class UsersController < ApplicationController
         end
         @artists = current_user.artists 
         @venues = @user.venues
+        @booking = Booking.new
     end
 
     def index

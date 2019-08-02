@@ -4,10 +4,12 @@ class GenresController < ApplicationController
 
     def index
         @genres = Genre.all
+        @booking = Booking.new
     end
 
     def show
         @artists = @genre.artists
+        @booking = Booking.new
     end
 
     private

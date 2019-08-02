@@ -3,6 +3,7 @@ class ArtistsController < ApplicationController
 
     def index
         @artists = Artist.all
+        @booking = Booking.new
     end
 
     def search
@@ -46,9 +47,23 @@ class ArtistsController < ApplicationController
 
     def like
         @artist = Artist.find(like_params[:artist_id])
-        UserLikesArtist.create(user_id: current_user.id, artist_id: @artist.id)
-        redirect_to artist_path(@artist)
+        if like = UserLikesArtist.find_by(user_id: current_user.id, artist_id: @artist.id)
+            like.destroy
+        else
+            UserLikesArtist.create(user_id: current_user.id, artist_id: @artist.id) 
+        end
+        if like_params[:locus] == "artists"
+            redirect_to artists_path
+        else
+            redirect_to artist_path(@artist)
+        end
     end
+
+    # def like_tile
+    #     @artist = Artist.find(like_params[:artist_id])
+    #     UserLikesArtist.create(user_id: current_user.id, artist_id: @artist.id)
+    #     redirect_to artists_path
+    # end
 
     def create
         @artist = Artist.new(artist_params)
@@ -98,7 +113,7 @@ class ArtistsController < ApplicationController
     end
 
     def  like_params
-        params.permit(:artist_id)
+        params.permit(:artist_id, :locus)
     end    
 
     def require_login

@@ -10,7 +10,6 @@
                 <% end %>
                 <%= post.artist.name %>
             </a>
-            <p><%=post.content%></p>
             <%if post.media.attached?%>
                 <%if post.media.blob.content_type.include?("image" || "jpeg")%>
                 <%=image_tag post.media, class: "picture"%>
@@ -19,6 +18,7 @@
                 </video>
                 <%end%>
             <%end%>
+            <p><%=post.content%></p>
         </div>
         <%end%>
     <%end%>

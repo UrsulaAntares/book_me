@@ -22,7 +22,9 @@ class Artist < ApplicationRecord
         end
     end
 
-
+    def likers    
+        self.user_likes_artists.map {|l| l.user}
+    end    
    
 
 end

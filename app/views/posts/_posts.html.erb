@@ -12,7 +12,7 @@
                 <%end%>
             <%end%>
         <%if current_user && current_user.artists.include?(@artist)%>
-            <%=link_to "delete", post_path(post), method: 'delete', data: {confirm: "are you sure?"} %>
+            <%=link_to "delete", post_path(post), method: 'delete', data: {confirm: "are you sure?"}, class: "button" %>
             <%end%>
          </div>
         <%end%>

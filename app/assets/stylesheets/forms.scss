@@ -4,7 +4,7 @@
 //     color: #FFF;
 // }
 
-button, .button_to input, .button,  textarea, input[type="text"], input[type="submit"] {
+button, .button_to input, .button,  textarea, input[type="text"], input[type="number"],input[type="submit"], input[type="datetime-local"] {
     color: #ececec;
     margin: 3px 5px;
     // border-radius: 27px;
@@ -21,6 +21,8 @@ input[type="submit"].navbar-brand:hover{
     border: solid 0px #DDD;
     box-shadow: #6b9fff7a 0 0 0; 
 }    
+
+input[type="file"] {margin: 7px 5px;}
 
 input[type="submit"].navbar-brand  {
     border:0px; 
@@ -40,3 +42,35 @@ div.controls {
 
 
 .navbar-brand .admin { }
+
+div.post_form {
+    position: absolute;
+    right: 3%;
+    top:70px
+}
+
+div.booking_form {
+    position: absolute;
+    top:10px;
+    right: 27px;
+}
+
+.booking_form input {
+    width: 292px
+}
+
+.post_form input, .post_form textarea {
+    margin: 10px 0;
+    width: 250px;
+}
+
+label {min-width:98px;}
+
+.post_form label, .booking_form label {width:100px}
+
+// .search label {width:500px}
+
+div.half {
+    display:inline-block;
+    margin-left:30px;
+}

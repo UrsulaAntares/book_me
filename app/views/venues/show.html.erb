@@ -11,27 +11,31 @@
 <% end %>
 
 <% if current_user && current_user.venues.include?(@venue)%>
-<%=form_tag remove_venues_path, method: 'get' do %>
-<%=hidden_field_tag 'venue_id', @venue.id%>
-<%=submit_tag "Delete Admin"%>
-<%end%>
+    <%=form_tag remove_venues_path, method: 'get' do %>
+        <%=hidden_field_tag 'venue_id', @venue.id%>
+        <%=submit_tag "Delete Admin"%>
+    <%end%>
 <%end%>
 
 
 
 <% if @venue.past_shows.count > 0 %>
     <h2>Past Shows: </h2>
-    <ul class="thumb_display"> 
-    <% @venue.past_shows.each do |b| %>
-        <li>  
-            <%= "#{b.title}  | #{b.time}" %>
-            <br>    
-            <%= link_to b.artist.name, artist_path(b.artist) %>
-            <br> 
-            <%= b.description  %> 
-            </li>
-        <% end %>
-    </ul>
+    <div class="bookings">
+    <% @bookings.each do |booking|%>
+        <div class="tile">
+            <% if booking.image_url %> 
+                <%=  image_tag booking.image_url, class: 'icon'  %>
+            <% end %>
+            <p><%=link_to booking.title, booking_path(booking)%></p>
+            <p><%=link_to booking.venue.name, venue_path(booking.venue)%>
+            <p><%=booking.artist.name%></p>
+            <p><%=booking.date_format(booking.start_date)%></p>
+            <p><%=booking.time%></p>
+            <p><%=booking.description%></p>
+        </div>
+    <% end %>
+    </div>
 <% end %>
 
 <% if @venue.artist_likes.count > 0 %>
@@ -48,7 +52,8 @@
 <% end %>
 
 <% if current_user && current_user.venues.include?(@venue) %>
-    <div> Book an Artist
+    <div class="booking_form">
+    <h3 class="rotate">Book an Artist</h3>
     <%= render './bookings/form' %>
     </div>
 <% end %>
@@ -56,5 +61,7 @@
 <h2> Shows at this Venue </h2>
 <%= render './bookings/calendar' %>
 
+<% if @venue.artists.count > 0 %>
 <h2>Artists who have played here </h2>
 <%= render './artists/list_tiles' %>
+<% end %>
