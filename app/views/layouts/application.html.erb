@@ -22,6 +22,13 @@
     <%=link_to "Edit Artist", edit_artist_path(@artist), method: 'get', class: "navbar-brand admin" %>
     <%=link_to "Delete Artist", artist_path(@artist), method: 'delete', class: "navbar-brand admin" %>
   <% end %>
+  <%if current_user && current_user.artists.include?(@artist)%>
+
+        <%=form_tag remove_users_path, method: 'get', class: "controls" do %>
+            <%=hidden_field_tag 'artist_id', @artist.id%>
+            <%=submit_tag "Delete Admin", class: "navbar-brand admin"%>
+        <%end%>
+    <%end%>
   <%if !current_user%>
     <%=link_to "Login", login_path, class: "navbar-brand"%>
   <%end%>

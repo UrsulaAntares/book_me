@@ -19,7 +19,17 @@
 
 
 img, video {max-width:100%}
+a img:hover{
+    // border: solid 1px #DDD;
+    box-shadow: #6b9fff7a 0 0 27px }
+a div:hover {box-shadow: #6b9fff7a 0 0 27px }    
 
+
+div.content {
+    position:relative;
+    top: 72px;
+    padding: 0 3%;
+}
 
 img.headshot {
     border-radius: 50%;
@@ -140,14 +150,24 @@ div.login-header {margin: 150px;
 }
 
 .navbar {
-    /* border: 1px solid #dddddd3d; */
+    border: 1px solid #dddddd3d;
     /* color: #FFF; */
-    /* background: #003652a3; */
-    /* position: fixed; */
-    /* width: 100%; */
-
+    color: #ececec;
+    position: fixed; 
+    width: 100%; 
+    background: #7878b53d;
+    font-weight:200;
+    z-index: 500;
 }
 
 h2 {
     margin-top:20px;
+}
+
+body {color: #afafaf}
+a{font-weight:bold}
+
+a:hover{
+    color:#88a1e0;
+    text-decoration:none;
 }

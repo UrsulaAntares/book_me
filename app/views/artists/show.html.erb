@@ -23,35 +23,37 @@
 
 <p><%=@artist.description%></p>
 
-<!--buttons to like; any user can-->
-<% if current_user %>
-    <%= form_tag  artists_like_path do %>
-        <%= hidden_field_tag 'artist_id', @artist.id%>
-        <%= submit_tag "Like this Artist"%>
+<div class="profile_buttons">
+    <!--buttons to like; any user can-->
+    <% if current_user %>
+    
+        <%= form_tag  artists_like_path do %>
+            <%= hidden_field_tag 'artist_id', @artist.id%>
+            <%= submit_tag "Like this Artist", class: "button"%>
+        <% end %>
     <% end %>
-<% end %>
 
-<!--buttons to edit; only the user's admin can -->
+    <!--buttons to edit; only the user's admin can -->
+    <%if current_user && current_user.artists.include?(@artist)%>
 
-<%if current_user && current_user.artists.include?(@artist)%>
-    <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-    <%=button_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
-
-    <%=form_tag remove_users_path, method: 'get' do %>
-        <%=hidden_field_tag 'artist_id', @artist.id%>
-        <%=submit_tag "Delete Admin"%>
+        <%=form_tag remove_users_path, method: 'get', class: "controls" do %>
+            <%=hidden_field_tag 'artist_id', @artist.id%>
+            <%=submit_tag "Delete Admin", class: "button"%>
+        <%end%>
     <%end%>
-
-    <h5>What's on your mind?</h5>
-    <%=form_for @post do |f| %>
-        <%=f.hidden_field :artist_id, value: @artist.id%>
-        <%=f.label :content%>
-        <%=f.text_area  :content%>
-        <%=f.file_field :media%>
-        <%=f.submit "Create Post"%>
+</div>
+<div class="post_form">
+    <%if current_user && current_user.artists.include?(@artist)%>
+        <h5>What's on your mind?</h5>
+        <%=form_for @post do |f| %>
+            <%=f.hidden_field :artist_id, value: @artist.id%>
+            <%=f.label :content%>
+            <%=f.text_area  :content%><br>
+            <%=f.file_field :media%>
+            <%=f.submit "Create Post"%>
+        <%end%>
     <%end%>
-<%end%>
-
+</div>
 
 <!--genres-->
 
