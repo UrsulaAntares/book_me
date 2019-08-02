@@ -1,3 +1,4 @@
+<div class="login-header">
 <h1>Create a New Account</h1>
 <div>
 <ul>
@@ -7,9 +8,8 @@
 <%end%>
 <%end%>
 </ul>
-</div>
 
-<div>
+<div class="container create">
 <%=form_for @user do |f|%>
 <%=f.label :username%>
 <%=f.text_field :username%> <br>
@@ -19,4 +19,5 @@
 <%=f.password_field :password_confirmation%> <br>
 <%=f.submit "Create User"%>
 <%end%>
+</div>
 </div>
