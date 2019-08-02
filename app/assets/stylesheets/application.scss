@@ -187,18 +187,16 @@ div.login-header {margin: 150px;
 }
 
 .login {text-align: right;
-    margin: 0 auto;
-    width: 285px;
-}
-
-<<<<<<< HEAD
-.create {
-    text-align: right;
-    margin: 0 200px 0;
+    margin: 0 220px;
     width: 400px;
 }
 
-=======
+.create {
+    text-align: right;
+    margin: 0 200px 0;
+    width: 450px;
+}
+
 .navbar {
     border: 1px solid #dddddd3d;
     /* color: #FFF; */
@@ -208,6 +206,7 @@ div.login-header {margin: 150px;
     background: #7878b53d;
     font-weight:200;
     z-index: 500;
+    top: 0;
 }
 
 h2 {
@@ -261,4 +260,3 @@ input.like_button:hover {
 .tile-options {
     text-align: center;
 }
->>>>>>> 9f21f7d31cc7c1f259fe3566d44b578b2b06c576

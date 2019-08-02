@@ -10,7 +10,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg">
+
   <a class="navbar-brand" href="/artists">Artists</a>  
   <a class="navbar-brand" href="/venues">Venues</a>  
   <a class="navbar-brand" href="/bookings">Calendar</a> 
@@ -42,6 +43,7 @@
     <%=link_to "Dashboard", user_path(current_user), class: "navbar-brand"%>
     <%=link_to "Logout", logout_path, method: 'destroy', class: "navbar-brand"%>
   <%end%>
+
 </nav>
 
 

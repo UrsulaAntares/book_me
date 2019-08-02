@@ -41,6 +41,7 @@ class ArtistsController < ApplicationController
     end
 
     def new
+        require_login
         @artist = Artist.new
         @artist.genres.build()
     end
@@ -117,7 +118,9 @@ class ArtistsController < ApplicationController
     end    
 
     def require_login
-        return head(:forbidden) unless session.include? :user_id
+        unless session.include? :user_id
+        redirect_to login_path
+        end
     end
 
     def search_params

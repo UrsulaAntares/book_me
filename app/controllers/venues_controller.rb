@@ -19,6 +19,7 @@ class VenuesController < ApplicationController
     end
 
     def new
+        require_login
         @venue = Venue.new
     end
 
@@ -75,7 +76,9 @@ class VenuesController < ApplicationController
     end
 
     def require_login
-        return head(:forbidden) unless session.include? :user_id
+        unless session.include? :user_id
+        redirect_to login_path
+        end
     end
 
 end

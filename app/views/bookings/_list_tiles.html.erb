@@ -1,6 +1,8 @@
 <% @bookings.each do |booking|%>
     <div class="tile">
-            <% if booking.image_url %> 
+            <% if booking.show_pic.attached?%>
+                <%=image_tag booking.show_pic, class: 'icon'%>
+            <% elsif booking.image_url %> 
                 <%=  image_tag booking.image_url, class: 'icon'  %>
             <% end %>
             <p><%=link_to booking.title, booking_path(booking)%></p>
