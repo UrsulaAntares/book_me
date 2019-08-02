@@ -10,9 +10,11 @@
     <%= render './bookings/list_tiles' %>
 <% end %>
 
+<% if current_user && current_user.venues.include?(@venue)%>
 <%=form_tag remove_venues_path, method: 'get' do %>
 <%=hidden_field_tag 'venue_id', @venue.id%>
 <%=submit_tag "Delete Admin"%>
+<%end%>
 <%end%>
 
 
@@ -45,7 +47,7 @@
     </ul>
 <% end %>
 
-<% if current_user.venues.include?(@venue) %>
+<% if current_user && current_user.venues.include?(@venue) %>
     <div> Book an Artist
     <%= render './bookings/form' %>
     </div>

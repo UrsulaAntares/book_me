@@ -56,7 +56,7 @@ a.genres << folk << ind << pop
 
 mlam.artists << lizzo << a
 lovemusic.artists << db << lizzo
-cooluser << b
+cooluser.artists << b
 
 
 ninethirty= Venue.create(name: '9:30 Club', location: 'U Street', description: 'perfect', category: 'club', capacity: 400)
@@ -73,8 +73,8 @@ mlam.venues << anthem << uhaul
 # mlam.venues << uhaul
 lovemusic.venues << dc9 << blackcat
 # lovemusic.venues << blackcat
-cooluser << songbird << hamilton 
-joe123 << bohem << rnr
+cooluser.venues << songbird << hamilton 
+joe123.venues << bohem << rnr
 
 
 

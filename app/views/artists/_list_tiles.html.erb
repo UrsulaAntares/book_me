@@ -15,7 +15,7 @@
             <% artist.genres.each do |g| %>
                 <%= link_to g.name, genre_path(g), class: 'genre-links' %> 
             <% end %>
-            <% if @venue && current_user.venues.include?(@venue) %> 
+            <% if current_user && @venue && current_user.venues.include?(@venue) %> 
                 <div>
                 <% if  @venue.artist_likes.select {|l| l.artist == artist}.count >= 1 %>
                     <%= form_for(@venue, url: {controller: 'venues', action: 'unendorse'}, method: :post) do |f| %>

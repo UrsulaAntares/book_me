@@ -15,7 +15,7 @@
   <a class="navbar-brand" href="/venues">Venues</a>  
   <a class="navbar-brand" href="/bookings">Calendar</a> 
   <a class="navbar-brand" href="/posts">News</a> 
-  <% if @venue && current_user.venues.include?(@venue) %>
+  <% if current_user && @venue && current_user.venues.include?(@venue) %>
     <%= link_to "Edit this Venue", edit_venue_path(@venue), class: "navbar-brand admin" %>
   <% end %>
   <%if current_user && current_user.artists.include?(@artist)%>

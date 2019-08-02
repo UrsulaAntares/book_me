@@ -7,13 +7,20 @@ class UserArtistsController < ApplicationController
     def create
         user_object = User.find_by(username: user_artist_params[:user_id])
        # byebug
+      
         artist_ids = user_artist_params[:artist_id]
         artist_ids.each do |id|
-            if id != "" && !user_object.artists.include?(Artist.find_by(id: id))
+            if !user_object.nil? && id != "" && !user_object.artists.include?(Artist.find_by(id: id))
                 UserArtist.create(user_id: user_object.id, artist_id: id)
             end
         end
+        if user_object.nil?
+            @user_artist = UserArtist.new
+            @message = "No user found."
+            render :new
+        else
             redirect_to user_path(current_user)
+        end
     end
 
     def remove
