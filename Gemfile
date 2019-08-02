@@ -70,3 +70,5 @@ gem "simple_calendar", "~> 2.0"
 
 
 gem 'bootstrap', '~> 4.3.1'
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

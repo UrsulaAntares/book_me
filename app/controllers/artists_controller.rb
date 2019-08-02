@@ -8,6 +8,7 @@ class ArtistsController < ApplicationController
 
     def search
         @artists = []
+        @booking = Booking.new
         if search_params[:g] != ""
             genre = Genre.find_by(name: search_params[:g])
             @artists = genre.artists
