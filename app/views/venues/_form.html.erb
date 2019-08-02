@@ -9,9 +9,19 @@
    <%= f.text_field :category %><br>
    <%= f.label :capacity %>
    <%= f.number_field :capacity %><br>
-   <%=f.file_field :picture%><br>
+   <%= f.file_field :picture%><br>
    <%= f.submit %>
 <% end %>
 
 
+<% if @venue.users.count > 0 %>
+   Current Users with admin rights:
+   <% @venue.users.each do |user|%>
+         <%=user.username%>
+   <%end%>
+<%end %>
+<hr>
 
+<%current_user.venue_admin(@venue).each do |user|%> 
+    <%=user.username%>
+<%end%>

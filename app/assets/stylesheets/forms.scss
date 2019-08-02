@@ -1,12 +1,76 @@
-input {    
-    background: #d4d4d454;
-    border: 0px;
-    color: #FFF;
-}
+// input {    
+//     background: #7878b53d;
+//     border: 0px;
+//     color: #FFF;
+// }
 
-button, .button_to input {
+button, .button_to input, .button,  textarea, input[type="text"], input[type="number"],input[type="submit"], input[type="datetime-local"] {
     color: #ececec;
     margin: 3px 5px;
-    border-radius: 15px;
+    // border-radius: 27px;
     border: 1px solid #606063;
+    padding: 4px 17px;
+    background: #7878b53d;
+}
+
+button:hover, .button_to input:hover, .button:hover, input[type="submit"]:hover {
+    border: solid 1px #DDD;
+    box-shadow: #6b9fff7a 0 0 20px }
+
+input[type="submit"].navbar-brand:hover{
+    border: solid 0px #DDD;
+    box-shadow: #6b9fff7a 0 0 0; 
+}    
+
+input[type="file"] {margin: 7px 5px;}
+
+input[type="submit"].navbar-brand  {
+    border:0px; 
+    background: none;
+}
+
+
+form.button_to {display: inline-block;}
+
+div.controls {
+    position: relative;
+    top: -39px;
+    float: right;
+    right: 5px;
+}
+
+
+
+.navbar-brand .admin { }
+
+div.post_form {
+    position: absolute;
+    right: 3%;
+    top:70px
+}
+
+div.booking_form {
+    position: absolute;
+    top:10px;
+    right: 27px;
+}
+
+.booking_form input {
+    width: 292px
+}
+
+.post_form input, .post_form textarea {
+    margin: 10px 0;
+    width: 250px;
+}
+
+label {min-width:98px;}
+
+.post_form label, .booking_form label {width:100px}
+
+// .search label {width:500px}
+
+div.half {
+    display:inline-block;
+    margin-left:30px;
 }

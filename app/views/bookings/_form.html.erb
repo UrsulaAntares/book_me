@@ -1,4 +1,5 @@
 <%= form_for @booking  do  |f| %>
+<div class="half">
     <div>
         <%= f.label :title %>
         <%= f.text_field :title %>
@@ -26,19 +27,21 @@
             <%= f.hidden_field :artist_name, :value => @artist.name%>
         </div>
     <% end %>
+</div>
+<div class="half">
    <% unless @venue %><!--this hides the field when an @venue is given so that a venue will fill this in automatically -->
         <div>
             <%= f.label :venue_name %> <!--#make this a dataset next-->
             <%= f.text_field :venue_name, list: 'venues_autocomplete' %>
             <datalist id='venues_autocomplete'>
-                <% Venue.all.each do |venue| %>
+                <% current_user.venues.each do |venue| %>
                     <option value="<%= venue.name %>">
                 <% end %>
             </datalist>
         </div>
    <% else %>
          <div>
-            <%= f.hidden_field :venue_id, :value => @venue.id%>
+            <%= f.hidden_field :venue_name, :value => @venue.name%>
         </div>
    <% end %>
     <div>
@@ -48,13 +51,13 @@
     <div>
         <%= f.label :image_url %>
         <%= f.text_field :image_url %>
-
+        <br>
         <%=f.label "Upload Photo"%>
         <%=f.file_field :show_pic%>
     </div>
 
 
     <%= submit_tag %>
-
+</div>
 <% end %>
 

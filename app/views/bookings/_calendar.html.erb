@@ -2,18 +2,20 @@
   <%= date.day %>
 
   <% bookings.each do |booking| %>
-    <div>
-      <%= booking.title %>
+    <div class="tile" >
+      <%= link_to booking.title, booking_path(booking) %>
       <br>
      
-      <a class="tile calendar-link" href="<%=artist_path(booking.artist)%>">
+      <a class="calendar-link" href="<%=artist_path(booking.artist)%>">
         <% if booking.artist.avatar.attached? %>
           <%=image_tag booking.artist.avatar, class: 'icon' %>
           <%end%>
         <% if booking.artist.image_url %>
          <img class="icon" src="<%=booking.image_url||booking.artist.image_url||booking.venue.image_url%>" />
         <% end %>
-        <%= booking.artist.name %>
+        <br>
+        <%= booking.artist.name %><br>
+        <%= booking.venue.name %>
         </a>
       <br>
       

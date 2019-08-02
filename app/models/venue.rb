@@ -5,6 +5,7 @@ class Venue < ApplicationRecord
     has_many :user_venues
     has_many :users, through: :user_venues
     has_one_attached :picture
+    accepts_nested_attributes_for :users
 
     def future_shows
         self.bookings.select {|b| b.start_date > DateTime.now} 

@@ -1,57 +1,50 @@
 <h1 class="title"><%=@artist.name%></h1>
 
 <!--Headshot -->
-<% if @artist.image_url%>
-    <%=image_tag @artist.image_url, class: "headshot"%>
-<% elsif @artist.avatar.attached?%>
-    <%=image_tag @artist.avatar, class: "headshot"%>
-<%else%>
-    <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
-<%end%>
+<div class="headshot">
+    <% if @artist.image_url%>
+        <%=image_tag @artist.image_url, class: "headshot"%>
+    <% elsif @artist.avatar.attached?%>
+        <%=image_tag @artist.avatar, class: "headshot"%>
+    <%else%>
+        <%=image_tag "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg", class: "headshot"%>
+    <%end%>
 
 
+    <div class="profile_buttons">
+        <!--buttons to like; any user can-->
+    <% if current_user %>
+            <%= form_tag  artists_like_path do %>
+                <%= hidden_field_tag 'artist_id', @artist.id%>
+                <input type="submit" value="♥" class="<%= @artist.likers.include?(current_user) ? 'like_button' : ''%>">  
+            <% end %>
+        <% end %> 
+    </div>
+</div>
 
 
 <!--likes-->
 
 <div class="likes"><%= pluralize(@artist.user_likes_artists.count, "Like") %></div>
-<% if @artist.user_likes_artists %>
-    <%= @artist.user_likes_artists.map { |l| l.user.username}.join(', ')  %>
-<% end %>
+<!--< % if @artist.user_likes_artists %>
+    < % = @artist.user_likes_artists.map { |l| l.user.username}.join(', ')  %>
+< % end %>-->
 
 <!--description -->
 
 <p><%=@artist.description%></p>
 
-<!--buttons to like; any user can-->
-<% if current_user %>
-    <%= form_tag  artists_like_path do %>
-        <%= hidden_field_tag 'artist_id', @artist.id%>
-        <%= submit_tag "Like this Artist"%>
-    <% end %>
-<% end %>
-
-<!--buttons to edit; only the user's admin can -->
-
-<%if current_user && current_user.artists.include?(@artist)%>
-    <%=button_to "Edit Your Artist", edit_artist_path(@artist), method: 'get'%>
-    <%=button_to "Delete Your Artist", artist_path(@artist), method: 'delete'%>
-
-    <%=form_tag remove_users_path, method: 'get' do %>
-        <%=hidden_field_tag 'artist_id', @artist.id%>
-        <%=submit_tag "Delete Admin"%>
+<div class="post_form">
+    <%if current_user && current_user.artists.include?(@artist)%>
+        <h5>What's on your mind?</h5>
+        <%=form_for @post do |f| %>
+            <%=f.hidden_field :artist_id, value: @artist.id%>
+            <%=f.text_area  :content%><br>
+            <%=f.file_field :media%><br>
+            <%=f.submit "Create Post"%>
+        <%end%>
     <%end%>
-
-    <h5>What's on your mind?</h5>
-    <%=form_for @post do |f| %>
-        <%=f.hidden_field :artist_id, value: @artist.id%>
-        <%=f.label :content%>
-        <%=f.text_area  :content%>
-        <%=f.file_field :media%>
-        <%=f.submit "Create Post"%>
-    <%end%>
-<%end%>
-
+</div>
 
 <!--genres-->
 
