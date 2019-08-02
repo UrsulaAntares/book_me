@@ -27,7 +27,8 @@
         <% end %>
     </div>
     <div>
-    <% if current_user.venues != [] %>
+    <% if current_user.venues != [] || current_user.venues.nil? %>
+    <% @venues = current_user.venues %>
         <%= render './venues/list_tiles' %>
     <%else%>
         <p>You have not booked anything yet.</p>
